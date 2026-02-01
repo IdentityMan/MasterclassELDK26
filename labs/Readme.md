@@ -78,6 +78,9 @@ Depending on what kind of Tenant you have been able to set up yourself from abov
 
 While we will for each lab instruction provide details on a least-privilege role permission for the task, but you can expect that some tasks will require up to Global Administrator in the Demo Tenant, or at least access to a person that is GA and can do the task for you. Typically these are Admin Consents and like.
 We strongly recommend using a member account in the test or lab tenant for testing scenarios to avoid the limitations of B2B users and reduces complexity by potential cross-tenant scenarios..
+## Do I need any installed software?
+For a few lab scenarios, you will need to execute and install `Maester` module. Therefore, ensure that you have the latest version of PowerShell Core installed. Make sure these prerequisites are met. No local administrative privileges are required.
+
 ## Do I need an Azure Subscription?
 
 Yes, some labs require access to an Azure Subscription, but these labs can also be skipped or done later, and will not be a requirement for the later labs in the class.
