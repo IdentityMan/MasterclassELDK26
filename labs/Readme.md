@@ -36,9 +36,9 @@ Partner users can only have one tenant simultaneously, so you might have to dele
 
 ### Microsoft 365 Developer Program Subscription
 
-If you are eligble you can sign up for the Microsoft 365 Developer Program, <https://developer.microsoft.com/en-us/microsoft-365/dev-program>, and create a Microsoft 365 E5 Developer Subscription.
+If you are eligible you can sign up for the Microsoft 365 Developer Program, <https://developer.microsoft.com/en-us/microsoft-365/dev-program>, and create a Microsoft 365 E5 Developer Subscription.
 
-To see eligble programs like "Microsoft AI Cloud Partner Program Participants", "Visual Studio Subscribers" etc, look here: <https://learn.microsoft.com/en-us/office/developer-program/microsoft-365-developer-program>
+To see eligible programs like "Microsoft AI Cloud Partner Program Participants", "Visual Studio Subscribers" etc, look here: <https://learn.microsoft.com/en-us/office/developer-program/microsoft-365-developer-program>
 
 When you sign up you can get the option to create a tenant for the Microsoft 365 E5 Developer Sandbox Subscription.
 
