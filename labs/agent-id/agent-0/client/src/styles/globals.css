@@ -1,0 +1,614 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@layer base {
+  body {
+    @apply antialiased;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
+  }
+
+  :root {
+    color-scheme: light dark;
+  }
+
+  .theme-transition,
+  .theme-transition *,
+  .theme-transition *::before,
+  .theme-transition *::after {
+    transition-property:
+      background-color, border-color, color, fill, stroke, opacity, box-shadow;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
+  }
+
+  .theme-transition {
+    transition-property: background-color, border-color;
+  }
+
+  @keyframes textFade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+@theme {
+  /* Base colors */
+  --color-background: hsla(0, 0%, 100%, 1);
+  --color-foreground: hsla(0, 0%, 12%, 1);
+  --color-muted: hsla(0, 0%, 92%, 1);
+  --color-muted-foreground: hsla(0, 5%, 65%, 1);
+  --color-border: hsla(0, 5%, 85%, 1);
+
+  /* Primary colors */
+  --color-primary: hsla(0, 0%, 35%, 1);
+  --color-primary-foreground: hsla(0, 0%, 97%, 1);
+  --color-primary-muted: hsla(0, 0%, 94%, 1);
+
+  /* Secondary colors */
+  --color-secondary: hsla(0, 0%, 50%, 1);
+  --color-secondary-foreground: hsla(0, 0%, 30%, 1);
+  --color-secondary-muted: hsla(0, 0%, 80%, 1);
+
+  /* Destructive colors */
+  --color-destructive: hsla(360, 80%, 90%, 1);
+  --color-destructive-foreground: hsla(358, 65%, 39%, 1);
+
+  /* Component states */
+  --color-hover-overlay: hsla(0, 0%, 0%, 0.027);
+  --color-active-overlay: hsla(0, 0%, 0%, 0.047);
+  --opacity-disabled: 0.5;
+
+  /* Card colors */
+  --color-card: hsla(0, 0%, 99%, 1);
+  --color-card-background: hsla(0, 0%, 99%, 1);
+  --color-card-foreground: hsla(0, 0%, 12%, 1);
+
+  /* Popover colors */
+  --color-popover: hsla(0, 0%, 100%, 1);
+  --color-popover-background: hsla(0, 0%, 100%, 1);
+  --color-popover-foreground: hsla(0, 0%, 30%, 1);
+
+  /* Button colors */
+  --color-btn-primary: hsla(0, 0%, 12%, 1);
+  --color-btn-primary-foreground: hsla(0, 0%, 95%, 1);
+  --color-btn-primary-hover: hsla(0, 0%, 25%, 1);
+  --color-btn-primary-hover-foreground: hsla(0, 0%, 95%, 1);
+
+  --color-btn-destructive: hsla(5, 55%, 97%, 1);
+  --color-btn-destructive-foreground: hsla(5, 75%, 37%, 1);
+  --color-btn-destructive-hover: hsla(5, 55%, 93%, 1);
+  --color-btn-destructive-hover-foreground: hsla(5, 75%, 37%, 1);
+
+  --color-btn-outlined: hsla(0, 0%, 100%, 1);
+  --color-btn-outlined-foreground: hsla(0, 0%, 35%, 1);
+  --color-btn-outlined-hover: hsla(0, 0%, 94%, 1);
+  --color-btn-outlined-hover-foreground: hsla(0, 0%, 95%, 1);
+
+  --color-btn-ghost: transparent;
+  --color-btn-ghost-foreground: hsla(0, 0%, 12%, 1);
+  --color-btn-ghost-hover: hsla(0, 0%, 80%, 1);
+  --color-btn-ghost-hover-foreground: hsla(0, 0%, 95%, 1);
+
+  /* Input colors */
+  --color-input: hsla(0, 0%, 95%, 1);
+  --color-input-foreground: hsla(0, 0%, 35%, 1);
+  --color-input-border: hsla(0, 0%, 50%, 1);
+  --color-input-muted: hsla(0, 0%, 97%, 1);
+  --color-input-error: hsla(360, 80%, 90%, 1);
+  --color-input-error-foreground: hsla(358, 65%, 39%, 1);
+
+  /* Shadows */
+  --shadow-xs:
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.04),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.04);
+  --shadow-sm:
+    0px 4px 4px -2px hsla(0, 0%, 0%, 0.04),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.04),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.04);
+  --shadow-md:
+    0px 6px 6px -3px hsla(0, 0%, 0%, 0.06),
+    0px 4px 4px -1px hsla(0, 0%, 0%, 0.04),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.04),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.04);
+  --shadow-lg:
+    0px 12px 12px -6px hsla(0, 0%, 0%, 0.08),
+    0px 6px 6px -1.5px hsla(0, 0%, 0%, 0.06),
+    0px 4px 4px 0px hsla(0, 0%, 0%, 0.04),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.04),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.04);
+  --shadow-xl:
+    0px 24px 24px -22px hsla(0, 0%, 0%, 0.1),
+    0px 12px 12px -8px hsla(0, 0%, 0%, 0.08),
+    0px 6px 6px -3px hsla(0, 0%, 0%, 0.06),
+    0px 4px 4px 2px hsla(0, 0%, 0%, 0.04),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.04),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.06);
+  --shadow-2xl:
+    0px 40px 40px -28px hsla(0, 0%, 0%, 0.12),
+    0px 24px 24px -28px hsla(0, 0%, 0%, 0.1),
+    0px 12px 12px -8px hsla(0, 0%, 0%, 0.08),
+    0px 6px 6px -3px hsla(0, 0%, 0%, 0.06),
+    0px 4px 4px 2px hsla(0, 0%, 0%, 0.04),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.04),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.04);
+
+  /* Bevel shadows */
+  --shadow-bevel-xs:
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.04),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.04),
+    0px -1.5px 1.5px -1.5px hsla(0, 0%, 0%, 0.04) inset,
+    0px 3px 3px -1.5px hsla(0, 0%, 100%, 1) inset;
+  --shadow-bevel-sm:
+    0px 4px 4px -2px hsla(0, 0%, 0%, 0.04),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.04),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.04),
+    0px -1.5px 1.5px -1.5px hsla(0, 0%, 0%, 0.04) inset,
+    0px 3px 3px -1.5px hsla(0, 0%, 100%, 1) inset;
+  --shadow-bevel-md:
+    0px 6px 6px -3px hsla(0, 0%, 0%, 0.06),
+    0px 4px 4px -1px hsla(0, 0%, 0%, 0.04),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.04),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.04),
+    0px -1.5px 1.5px -1.5px hsla(0, 0%, 0%, 0.04) inset,
+    0px 3px 3px -1.5px hsla(0, 0%, 100%, 1) inset;
+  --shadow-bevel-lg:
+    0px 12px 12px -6px hsla(0, 0%, 0%, 0.08),
+    0px 6px 6px -1.5px hsla(0, 0%, 0%, 0.06),
+    0px 4px 4px 0px hsla(0, 0%, 0%, 0.04),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.04),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.04),
+    0px -1.5px 1.5px -1.5px hsla(0, 0%, 0%, 0.04) inset,
+    0px 3px 3px -1.5px hsla(0, 0%, 100%, 1) inset;
+  --shadow-bevel-xl:
+    0px 24px 24px -22px hsla(0, 0%, 0%, 0.12),
+    0px 12px 12px -6px hsla(0, 0%, 0%, 0.08),
+    0px 6px 6px -1.5px hsla(0, 0%, 0%, 0.06),
+    0px 4px 4px 0px hsla(0, 0%, 0%, 0.04),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.04),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.04),
+    0px -1.5px 1.5px -1.5px hsla(0, 0%, 0%, 0.04) inset,
+    0px 3px 3px -1.5px hsla(0, 0%, 100%, 1) inset;
+  --shadow-bevel-2xl:
+    0px 40px 40px -28px hsla(0, 0%, 0%, 0.12),
+    0px 24px 24px -28px hsla(0, 0%, 0%, 0.12),
+    0px 12px 12px -6px hsla(0, 0%, 0%, 0.08),
+    0px 6px 6px -1.5px hsla(0, 0%, 0%, 0.06),
+    0px 4px 4px 0px hsla(0, 0%, 0%, 0.04),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.04),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.04),
+    0px -1.5px 1.5px -1.5px hsla(0, 0%, 0%, 0.04) inset,
+    0px 3px 3px -1.5px hsla(0, 0%, 100%, 1) inset;
+
+  /* Button shadows */
+  --shadow-btn-primary-resting: 0px 1px 2px hsla(0, 0%, 0%, 0.05);
+  --shadow-btn-primary-hover: 0px 2px 4px hsla(0, 0%, 0%, 0.1);
+  --shadow-btn-primary-focus: 0px 0px 0px 2px hsla(0, 0%, 50%, 0.5);
+
+  --shadow-btn-secondary-resting: 0px 1px 2px hsla(0, 0%, 0%, 0.05);
+  --shadow-btn-secondary-hover: 0px 2px 4px hsla(0, 0%, 0%, 0.1);
+  --shadow-btn-secondary-focus: 0px 0px 0px 2px hsla(0, 0%, 50%, 0.5);
+
+  --shadow-btn-destructive-resting:
+    0px 0px 0px 1px hsla(10, 70%, 35%, 0.24),
+    0px 2px 2px -1px hsla(10, 70%, 35%, 0.08),
+    0px 1px 1px -1px hsla(10, 70%, 35%, 0.04),
+    inset 0px -1px 1px 0.5px hsla(10, 70%, 35%, 0.04);
+  --shadow-btn-destructive-hover:
+    0px 0px 0px 1px hsla(10, 70%, 35%, 0.24),
+    0px 2px 2px -1px hsla(10, 70%, 35%, 0.08),
+    0px 3px 6px -1.5px hsla(10, 70%, 35%, 0.08),
+    0px 1px 1px -1px hsla(10, 70%, 35%, 0.04),
+    inset 0px -1px 1px 0.5px hsla(10, 70%, 35%, 0.04);
+  --shadow-btn-destructive-focus:
+    0px 0px 0px 1px hsla(10, 70%, 35%, 0.24),
+    0px 2px 2px -1px hsla(10, 70%, 35%, 0.08),
+    0px 3px 6px -1.5px hsla(10, 70%, 35%, 0.08),
+    0px 1px 1px -1px hsla(10, 70%, 35%, 0.04),
+    inset 0px -1px 1px 0.5px hsla(10, 70%, 35%, 0.04),
+    0px 0px 0px 4px hsla(360, 70%, 90%, 0.2);
+
+  --shadow-btn-outlined-resting:
+    0px 1px 2px hsla(0, 0%, 0%, 0.05), 0px 0px 0px 1px hsla(0, 0%, 50%, 0.5);
+  --shadow-btn-outlined-hover:
+    0px 2px 4px hsla(0, 0%, 0%, 0.1), 0px 0px 0px 1px hsla(0, 0%, 50%, 0.7);
+  --shadow-btn-outlined-focus: 0px 0px 0px 2px hsla(0, 0%, 50%, 0.5);
+
+  --shadow-btn-ghost-focus: 0px 0px 0px 2px hsla(0, 0%, 50%, 0.5);
+
+  /* Input shadows */
+  --shadow-input-resting:
+    0px 1px 1px 0.5px rgba(0, 0, 0, 0.04) inset,
+    0px 0px 0px 1px rgba(0, 0, 0, 0.24), 0px 0px 1px 0px rgba(0, 0, 0, 0.06),
+    0px 0px 1px 0px rgba(0, 0, 0, 0.06);
+  --shadow-input-hover:
+    0px 1px 1px 0.5px rgba(0, 0, 0, 0.04) inset,
+    0px 0px 0px 1px rgba(0, 0, 0, 0.4), 0px 0px 1px 0px rgba(0, 0, 0, 0.06),
+    0px 0px 1px 0px rgba(0, 0, 0, 0.06);
+  --shadow-input-focus:
+    0px 0px 0px 4px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0.5px rgba(0, 0, 0, 0.04) inset,
+    0px 0px 0px 1px rgba(0, 0, 0, 0.4), 0px 0px 1px 0px rgba(0, 0, 0, 0.06),
+    0px 0px 1px 0px rgba(0, 0, 0, 0.06);
+  --shadow-input-error-resting:
+    0px -1px 1px 0.5px rgba(175, 24, 0, 0.04) inset,
+    0px 0px 0px 1px rgba(175, 24, 0, 0.24),
+    0px 2px 2px -1px rgba(175, 24, 0, 0.08),
+    0px 1px 1px -1px rgba(175, 24, 0, 0.04);
+  --shadow-input-error-hover:
+    0px 0px 0px 1px #af1800, 0px 2px 2px -1px rgba(175, 24, 0, 0.08),
+    0px 1px 1px -1px rgba(175, 24, 0, 0.04),
+    0px -1px 1px 0.5px rgba(175, 24, 0, 0.04) inset;
+  --shadow-input-error-focus:
+    0px 0px 0px 4px rgba(175, 24, 0, 0.08),
+    0px -1px 1px 0.5px rgba(175, 24, 0, 0.04) inset, 0px 0px 0px 1px #af1800,
+    0px 2px 2px -1px rgba(175, 24, 0, 0.08),
+    0px 1px 1px -1px rgba(175, 24, 0, 0.04);
+
+  --shadow-checkbox-resting:
+    0px 4px 4px -2px hsla(0, 0%, 0%, 0.25),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.25),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.25),
+    0px -1.5px 1.5px -1.5px hsla(0, 0%, 100%, 0.1) inset,
+    0px 3px 3px -1.5px hsla(0, 0%, 0%, 0.2) inset;
+  --shadow-checkbox-hover:
+    0px 4px 4px -2px hsla(0, 0%, 0%, 0.25),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.25),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.25),
+    0px -1.5px 1.5px -1.5px hsla(0, 0%, 100%, 0.1) inset,
+    0px 3px 3px -1.5px hsla(0, 0%, 0%, 0.2) inset;
+  --shadow-checkbox-focus:
+    0px 4px 4px -2px hsla(0, 0%, 0%, 0.25),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.25),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.25),
+    0px -1.5px 1.5px -1.5px hsla(0, 0%, 100%, 0.1) inset,
+    0px 3px 3px -1.5px hsla(0, 0%, 0%, 0.2) inset,
+    0px 0px 0px 3px hsla(0, 0%, 100%, 0.15);
+
+  /* Animation */
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  --duration-slower: 500ms;
+  --animate-think: 0.5s linear 0s infinite alternate thinking;
+  --animate-fade-in: 0.3s ease-in-out 0s fadeIn;
+
+  /* Radii */
+  --radius-none: 0;
+  --radius-xs: 0.125rem; /* 2px */
+  --radius-sm: 0.25rem; /* 4px */
+  --radius-md: 0.375rem; /* 6px */
+  --radius-lg: 0.5rem; /* 8px */
+  --radius-xl: 0.75rem; /* 12px */
+  --radius-2xl: 0.875rem; /* 14px */
+  --radius-3xl: 1rem; /* 16px */
+  --radius-full: 9999px;
+}
+
+.dark {
+  /* Base colors */
+  --color-background: hsla(0, 0%, 12%, 1);
+  --color-foreground: hsla(0, 0%, 95%, 1);
+  --color-muted: hsla(0, 0%, 20%, 1);
+  --color-muted-foreground: hsla(0, 5%, 50%, 1);
+  --color-border: hsla(0, 5%, 25%, 1);
+
+  /* Primary colors */
+  --color-primary: hsla(0, 0%, 85%, 1);
+  --color-primary-foreground: hsla(0, 0%, 15%, 1);
+  --color-primary-muted: hsla(0, 0%, 20%, 1);
+
+  /* Secondary colors */
+  --color-secondary: hsla(0, 0%, 30%, 1);
+  --color-secondary-foreground: hsla(0, 0%, 85%, 1);
+  --color-secondary-muted: hsla(0, 0%, 25%, 1);
+
+  /* Destructive colors */
+  --color-destructive: hsla(358, 65%, 39%, 1);
+  --color-destructive-foreground: hsla(360, 70%, 90%, 1);
+
+  /* Component states */
+  --color-hover-overlay: hsla(0, 0%, 100%, 0.05);
+  --color-active-overlay: hsla(0, 0%, 100%, 0.1);
+  --opacity-disabled: 0.5;
+
+  /* Card colors */
+  --color-card: hsla(0, 0%, 10%, 1);
+  --color-card-background: hsla(0, 0%, 10%, 1);
+  --color-card-foreground: hsla(0, 0%, 88%, 1);
+
+  /* Popover colors */
+  --color-popover: hsla(0, 0%, 15%, 1);
+  --color-popover-background: hsla(0, 0%, 15%, 1);
+  --color-popover-foreground: hsla(0, 0%, 85%, 1);
+
+  /* Button colors */
+  --color-btn-primary: hsla(0, 0%, 90%, 1);
+  --color-btn-primary-foreground: hsla(0, 0%, 12%, 1);
+  --color-btn-primary-hover: hsla(0, 0%, 80%, 1);
+  --color-btn-primary-hover-foreground: hsla(0, 0%, 12%, 1);
+
+  --color-btn-destructive: hsla(5, 75%, 37%, 1);
+  --color-btn-destructive-foreground: hsla(5, 45%, 97%, 1);
+  --color-btn-destructive-hover: hsla(5, 75%, 30%, 1);
+  --color-btn-destructive-hover-foreground: hsla(5, 45%, 97%, 1);
+
+  --color-btn-outlined: hsla(0, 0%, 20%, 1);
+  --color-btn-outlined-foreground: hsla(0, 0%, 90%, 1);
+  --color-btn-outlined-hover: hsla(0, 0%, 15%, 1);
+  --color-btn-outlined-hover-foreground: hsla(0, 0%, 85%, 1);
+
+  --color-btn-ghost: transparent;
+  --color-btn-ghost-foreground: hsla(0, 0%, 90%, 1);
+  --color-btn-ghost-hover: hsla(0, 0%, 25%, 1);
+  --color-btn-ghost-hover-foreground: hsla(0, 0%, 95%, 1);
+
+  /* Input colors */
+  --color-input: hsla(0, 0%, 20%, 1);
+  --color-input-foreground: hsla(0, 0%, 90%, 1);
+  --color-input-border: hsla(0, 0%, 35%, 1);
+  --color-input-muted: hsla(0, 0%, 15%, 1);
+  --color-input-error: hsla(358, 65%, 39%, 1);
+  --color-input-error-foreground: hsla(360, 70%, 90%, 1);
+
+  /* Shadows */
+  --shadow-xs:
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.2),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.2);
+  --shadow-sm:
+    0px 4px 4px -2px hsla(0, 0%, 0%, 0.2),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.2),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.2);
+  --shadow-md:
+    0px 6px 6px -3px hsla(0, 0%, 0%, 0.25),
+    0px 4px 4px -1px hsla(0, 0%, 0%, 0.2),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.2),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.2);
+  --shadow-lg:
+    0px 12px 12px -6px hsla(0, 0%, 0%, 0.3),
+    0px 6px 6px -1.5px hsla(0, 0%, 0%, 0.25),
+    0px 4px 4px 0px hsla(0, 0%, 0%, 0.2), 0px 2px 2px -1px hsla(0, 0%, 0%, 0.2),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.2);
+  --shadow-xl:
+    0px 24px 24px -22px hsla(0, 0%, 0%, 0.35),
+    0px 12px 12px -8px hsla(0, 0%, 0%, 0.3),
+    0px 6px 6px -3px hsla(0, 0%, 0%, 0.25),
+    0px 4px 4px 2px hsla(0, 0%, 0%, 0.2), 0px 2px 2px -1px hsla(0, 0%, 0%, 0.2),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.25);
+  --shadow-2xl:
+    0px 40px 40px -28px hsla(0, 0%, 0%, 0.4),
+    0px 24px 24px -28px hsla(0, 0%, 0%, 0.35),
+    0px 12px 12px -8px hsla(0, 0%, 0%, 0.3),
+    0px 6px 6px -3px hsla(0, 0%, 0%, 0.25),
+    0px 4px 4px 2px hsla(0, 0%, 0%, 0.2), 0px 2px 2px -1px hsla(0, 0%, 0%, 0.2),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.2);
+
+  /* Bevel shadows */
+  --shadow-bevel-xs:
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.25),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.25),
+    0px -1.5px 1.5px -1.5px hsla(0, 0%, 100%, 0.1) inset,
+    0px 3px 3px -1.5px hsla(0, 0%, 0%, 0.3) inset;
+  --shadow-bevel-sm:
+    0px 4px 4px -2px hsla(0, 0%, 0%, 0.25),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.25),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.25),
+    0px -1.5px 1.5px -1.5px hsla(0, 0%, 100%, 0.1) inset,
+    0px 3px 3px -1.5px hsla(0, 0%, 0%, 0.3) inset;
+  --shadow-bevel-md:
+    0px 6px 6px -3px hsla(0, 0%, 0%, 0.3),
+    0px 4px 4px -1px hsla(0, 0%, 0%, 0.25),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.25),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.25),
+    0px -1.5px 1.5px -1.5px hsla(0, 0%, 100%, 0.1) inset,
+    0px 3px 3px -1.5px hsla(0, 0%, 0%, 0.3) inset;
+  --shadow-bevel-lg:
+    0px 12px 12px -6px hsla(0, 0%, 0%, 0.35),
+    0px 6px 6px -1.5px hsla(0, 0%, 0%, 0.3),
+    0px 4px 4px 0px hsla(0, 0%, 0%, 0.25),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.25),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.25),
+    0px -1.5px 1.5px -1.5px hsla(0, 0%, 100%, 0.1) inset,
+    0px 3px 3px -1.5px hsla(0, 0%, 0%, 0.3) inset;
+  --shadow-bevel-xl:
+    0px 24px 24px -22px hsla(0, 0%, 0%, 0.4),
+    0px 12px 12px -8px hsla(0, 0%, 0%, 0.35),
+    0px 6px 6px -3px hsla(0, 0%, 0%, 0.3),
+    0px 4px 4px 2px hsla(0, 0%, 0%, 0.25),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.25),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.3),
+    0px -3px 1.5px -1.5px hsla(0, 0%, 100%, 0.1) inset,
+    0px 3px 3px -1.5px hsla(0, 0%, 0%, 0.3) inset;
+  --shadow-bevel-2xl:
+    0px 40px 40px -28px hsla(0, 0%, 0%, 0.45),
+    0px 24px 24px -28px hsla(0, 0%, 0%, 0.4),
+    0px 12px 12px -8px hsla(0, 0%, 0%, 0.35),
+    0px 6px 6px -3px hsla(0, 0%, 0%, 0.3),
+    0px 4px 4px 2px hsla(0, 0%, 0%, 0.25),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.25),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.25),
+    0px 0px 0px 1px hsla(0, 0%, 100%, 0.1),
+    0px -3px 1.5px -1.5px hsla(0, 0%, 100%, 0.1) inset,
+    0px 3px 3px -1.5px hsla(0, 0%, 0%, 0.3) inset;
+
+  /* Button shadows */
+  --shadow-btn-primary-resting: 0px 1px 2px hsla(0, 0%, 0%, 0.2);
+  --shadow-btn-primary-hover: 0px 2px 4px hsla(0, 0%, 0%, 0.25);
+  --shadow-btn-primary-focus: 0px 0px 0px 2px hsla(0, 0%, 70%, 0.5);
+
+  --shadow-btn-secondary-resting: 0px 1px 2px hsla(0, 0%, 0%, 0.2);
+  --shadow-btn-secondary-hover: 0px 2px 4px hsla(0, 0%, 0%, 0.25);
+  --shadow-btn-secondary-focus: 0px 0px 0px 2px hsla(0, 0%, 70%, 0.5);
+
+  --shadow-btn-destructive-resting:
+    0px 0px 0px 1px hsla(10, 60%, 65%, 0.24),
+    0px 2px 2px -1px hsla(10, 60%, 65%, 0.12),
+    0px 1px 1px -1px hsla(10, 60%, 65%, 0.08),
+    inset 0px -1px 1px 0.5px hsla(10, 60%, 65%, 0.08);
+  --shadow-btn-destructive-hover:
+    0px 0px 0px 1px hsla(10, 60%, 65%, 0.24),
+    0px 2px 2px -1px hsla(10, 60%, 65%, 0.12),
+    0px 3px 6px -1.5px hsla(10, 60%, 65%, 0.12),
+    0px 1px 1px -1px hsla(10, 60%, 65%, 0.08),
+    inset 0px -1px 1px 0.5px hsla(10, 60%, 65%, 0.08);
+  --shadow-btn-destructive-focus:
+    0px 0px 0px 1px hsla(10, 60%, 65%, 0.24),
+    0px 2px 2px -1px hsla(10, 60%, 65%, 0.12),
+    0px 3px 6px -1.5px hsla(10, 60%, 65%, 0.12),
+    0px 1px 1px -1px hsla(10, 60%, 65%, 0.08),
+    inset 0px -1px 1px 0.5px hsla(10, 60%, 65%, 0.08),
+    0px 0px 0px 4px hsla(360, 70%, 90%, 0.2);
+
+  --shadow-btn-outlined-resting:
+    0px 1px 2px hsla(0, 0%, 0%, 0.2), 0px 0px 0px 1px hsla(0, 0%, 50%, 0.5);
+  --shadow-btn-outlined-hover:
+    0px 2px 4px hsla(0, 0%, 0%, 0.25), 0px 0px 0px 1px hsla(0, 0%, 70%, 0.7);
+  --shadow-btn-outlined-focus: 0px 0px 0px 2px hsla(0, 0%, 70%, 0.5);
+
+  --shadow-btn-ghost-focus: 0px 0px 0px 2px hsla(0, 0%, 70%, 0.5);
+
+  /* Input shadows */
+  --shadow-input-resting:
+    0px 1px 1px 0.5px hsla(0, 0%, 0%, 0.2) inset,
+    0px 0px 0px 1px hsla(0, 0%, 100%, 0.15),
+    0px 1px 2px 0px hsla(0, 0%, 0%, 0.2);
+  --shadow-input-hover:
+    0px 1px 1px 0.5px hsla(0, 0%, 0%, 0.25) inset,
+    0px 0px 0px 1px hsla(0, 0%, 100%, 0.25),
+    0px 1px 3px 0px hsla(0, 0%, 0%, 0.3);
+  --shadow-input-focus:
+    0px 0px 0px 4px hsla(0, 0%, 100%, 0.15),
+    0px 1px 1px 0.5px hsla(0, 0%, 0%, 0.25) inset,
+    0px 0px 0px 1px hsla(0, 0%, 100%, 0.25),
+    0px 1px 3px 0px hsla(0, 0%, 0%, 0.3);
+  --shadow-input-error-resting:
+    0px 1px 1px 0.5px hsla(0, 0%, 0%, 0.2) inset,
+    0px 0px 0px 1px hsla(10, 100%, 60%, 0.4),
+    0px 1px 2px 0px hsla(10, 100%, 45%, 0.2);
+  --shadow-input-error-hover:
+    0px 1px 1px 0.5px hsla(0, 0%, 0%, 0.25) inset,
+    0px 0px 0px 1px hsla(10, 100%, 65%, 0.6),
+    0px 1px 3px 0px hsla(10, 100%, 45%, 0.3);
+  --shadow-input-error-focus:
+    0px 0px 0px 4px hsla(10, 100%, 65%, 0.2),
+    0px 1px 1px 0.5px hsla(0, 0%, 0%, 0.25) inset,
+    0px 0px 0px 1px hsla(10, 100%, 65%, 0.6),
+    0px 1px 3px 0px hsla(10, 100%, 45%, 0.3);
+
+  --shadow-checkbox-resting:
+    0px 4px 4px -2px hsla(0, 0%, 0%, 0.25),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.25),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.25),
+    0px -1.5px 1.5px -1.5px hsla(0, 0%, 100%, 0.1) inset,
+    0px 3px 3px -1.5px hsla(0, 0%, 0%, 0.2) inset;
+  --shadow-checkbox-hover:
+    0px 4px 4px -2px hsla(0, 0%, 0%, 0.25),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.25),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.25),
+    0px -1.5px 1.5px -1.5px hsla(0, 0%, 100%, 0.1) inset,
+    0px 3px 3px -1.5px hsla(0, 0%, 0%, 0.2) inset;
+  --shadow-checkbox-focus:
+    0px 4px 4px -2px hsla(0, 0%, 0%, 0.25),
+    0px 2px 2px -1px hsla(0, 0%, 0%, 0.25),
+    0px 1px 1px -0.5px hsla(0, 0%, 0%, 0.25),
+    0px -1.5px 1.5px -1.5px hsla(0, 0%, 100%, 0.1) inset,
+    0px 3px 3px -1.5px hsla(0, 0%, 0%, 0.2) inset,
+    0px 0px 0px 3px hsla(0, 0%, 100%, 0.15);
+}
+
+::selection {
+  background: var(--color-foreground);
+  color: var(--color-background);
+  text-shadow: none;
+}
+
+::-moz-selection {
+  background: var(--color-foreground);
+  color: var(--color-background);
+  text-shadow: none;
+}
+
+ul > li.chat::before {
+  content: '';
+  width: 1rem;
+  height: 2px;
+  position: absolute;
+  left: -1rem;
+  top: 0.75rem;
+  display: block;
+  background-color: currentColor;
+}
+
+ol > li.chat::before {
+  content: counter(list-item);
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  position: absolute;
+  left: -1.25rem;
+  top: 0rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 0.75rem;
+  background-color: var(--color-muted);
+}
+
+li.chat {
+  position: relative;
+  padding-left: 0.75rem;
+}
+
+@keyframes thinking {
+  from {
+    transform: scale(0.8);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: var(--animate-fade-in);
+  }
+
+  .animate-think {
+    animation: var(--animate-think);
+  }
+
+  .transition-opacity {
+    transition: opacity 150ms ease-out;
+  }
+}
+
+.prose * {
+  transition: none !important;
+}
+
+.prose p,
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  min-height: 1.5em;
+}
