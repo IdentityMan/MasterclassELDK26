@@ -47,6 +47,8 @@ Microsoft Learn source: [Lifecycle Workflows - Create](https://learn.microsoft.c
 After the pre-hire workflow has been created, create a new-hire workflow which is triggered based on the employeeHireDate and scoped to users with the departmet 'ELDK 2026'. Within this workflow make sure the following tasks are set:
 - Enable Account
 - Send Welcome email (feel free to customize on your own)
+- Make the user a member of a security group for ELDK 2026
+- Make the user a member of a MS Teams group for ELDK 2026
 - Create access package assignment to the access package created in Lab 2.1
 
 Microsoft Learn source:  [Lifecycle Workflows - Create](https://learn.microsoft.com/en-us/entra/id-governance/create-lifecycle-workflow)
