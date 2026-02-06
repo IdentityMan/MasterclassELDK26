@@ -67,13 +67,32 @@ Microsoft Learn source:  [Lifecycle Workflows - Create](https://learn.microsoft.
 ## Lab 2.6 - Run the workflows one-by-one
 
 Make sure that all tasks are exectued successfully.\
-**NOTE:** Be aware that for some tasks the manager need to be configured on the user account and should have a mailbox assigned.
+**NOTE:** Be aware that for some tasks the manager need to be configured on the user account and both should have a mailbox assigned.
+**NOTE:** Be aware that the Temporary Access Pass authentication method should be configured within your tenant to generate the Temporary Access Pass.
 
 Microsoft Learn source:  [Lifecycle Workflows - Run on Demand](https://learn.microsoft.com/en-us/entra/id-governance/on-demand-workflow)
 
 &nbsp;
 
-## Advanced Lab 2.7 - Create a custom extension for access pacakges
+## Lab 2.8 - Enable the passkey authentication method
+
+Now the onboarding has finished let's make sure that once the end user is starting to use their TAP they can onboard a passkey to their account. Within Entra ID go to Authentication Methods with an admin account which has the authentication policy administrator role. Here make sure that:
+- There is passkey profile configured for all users whereby device-bound passkeys are enabled
+- There is passkey profile configured for all users whereby synced passkeys are enabled, this can be targetted against a dynamic group containing all regular user accounts, or a test group.
+
+Microsoft Learn source:  [Entra ID - Passkey Profiles](https://learn.microsoft.com/en-us/entra/identity/authentication/how-to-authentication-passkey-profiles)
+
+&nbsp;
+
+## Lab 2.9 - Onboard the user with their TAP and Passkey
+
+If you've succesfully completed all the earlier steps in this lab you should be able to onboard the end user account by:
+- Retrieving the Temporary Access Pass from the mailbox of the manager
+- Sign-in with the user via a web-browser and enroll for a passkey via [My Sign-ins](https://mysignins.microsoft.com/security-info)
+
+&nbsp;
+
+## Advanced Lab 2.10 - Create a custom extension for access pacakges
 
 In some cases you perhaps want to add more advanced scenario's with low code to an access package, for that you can use custom extensions. If you've got time left during the lab you can create a custom extension which can be configured within one of the access packages created earlier. To do this:
 - Create a custom extension in the 'ELDK 2026' catalog.
@@ -83,7 +102,7 @@ Microsoft Learn source: [Entitlement Management - Custom Extension](https://lear
 
 &nbsp;
 
-## Advanced Lab 2.8 - Create a custom extension for lifecycle workflows
+## Advanced Lab 2.11 - Create a custom extension for lifecycle workflows
 
 In some cases you perhaps want to add more advanced scenario's with low code to a lifecycle workflow, for that you can use custom extensions. If you've got time left during the lab you can create a custom extension which can be used within one of the lifecycle workflows created earlier. To do this:
 - Create a custom extension within Lifecycle Workflows
