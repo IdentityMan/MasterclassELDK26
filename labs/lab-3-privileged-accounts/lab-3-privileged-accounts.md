@@ -1,10 +1,10 @@
-# Lab 2 - Privileged Accounts
+# Lab 3 - Privileged Accounts
 
-## Lab 2.1 - Create separated accounts for privileged access by Identity Provisioning
+## Lab 3.1 - Create separated accounts for privileged access by Identity Provisioning
 
 TBD
 
-## Lab 2.2 - Link privileged account to identity in Microsoft Defender XDR
+## Lab 3.2 - Link privileged account to identity in Microsoft Defender XDR
 
 Create a manual link between the privileged user and the regular (work) account of the identity:
 
@@ -16,7 +16,7 @@ More details are available in [Microsoft Learn](https://learn.microsoft.com/en-u
 
 After the link has been created, navigate to the identity page of the work account.
 
-## Lab 2.3 - Assign privileged account to Restricted Management Administrative Unit (RMAU)
+## Lab 3.3 - Assign privileged account to Restricted Management Administrative Unit (RMAU)
 
 1. Create an [Administrative Unit with dynamic membership](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/admin-units-members-dynamic?tabs=admin-center#add-rules-for-dynamic-membership-groups) named “Privileged Users” and enable “[Restricted management administrative unit](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/admin-units-restricted-management)” during the creation process.
 
