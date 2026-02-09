@@ -78,7 +78,9 @@ Depending on what kind of Tenant you have been able to set up yourself from abov
 
 While we will for each lab instruction provide details on a least-privilege role permission for the task, but you can expect that some tasks will require up to Global Administrator in the Demo Tenant, or at least access to a person that is GA and can do the task for you. Typically these are Admin Consents and like.
 We strongly recommend using a member account in the test or lab tenant for testing scenarios to avoid the limitations of B2B users and reduces complexity by potential cross-tenant scenarios..
+
 ## Do I need any installed software?
+
 For a few lab scenarios, you will need to execute and install `Maester` module. Therefore, ensure that you have the latest version of PowerShell Core installed. Make sure these prerequisites are met. No local administrative privileges are required.
 
 ## Do I need an Azure Subscription?
@@ -92,9 +94,7 @@ If you can bring your own Azure Subscription, we recommend one of the following 
 
 You will probably find you in a situation where you have a separate demo tenant (CDX, M365 Developer, etc), and the Azure Subscription connected to your Organization tenant. While you can reassociate Azure Subscriptions to other tenants, we recommend deploying Azure Lighthouse delegation instead for giving access to Azure between tenants.
 
-```azurecli
-# We will provide a sample deployment script here for using Azure Lighthouse before the event..
-```
+See [resources and Bicep deployment file for Azure Lighthouse](../resources/resource-1-azure-lighthouse/) for more details.
 
 ## What if I am not able to bring your own tenant to the Identity Master Class?
 
