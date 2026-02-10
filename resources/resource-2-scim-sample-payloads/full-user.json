@@ -1,0 +1,85 @@
+{
+    "schemas": [
+        "urn:ietf:params:scim:api:messages:2.0:BulkRequest"
+    ],
+    "Operations": [
+        {
+            "method": "POST",
+            "bulkId": "8c6c7de2-8716-41a7-8683-75d116653c37",
+            "path": "/Users",
+            "data": {
+                "schemas": [
+                    "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User",
+                    "urn:ietf:params:scim:schemas:extension:contoso:1.0:User"
+                ],
+                "externalId": "106",
+                "userName": "holger.danske",
+                "displayName": "Holger Danske",
+                "active": true,
+                "name": {
+                    "familyName": "Danske",
+                    "givenName": "Holger"
+                },
+                "userType": "Demo",
+                "addresses": [
+                    {
+                        "country": "DK",
+                        "formatted": "Denmark",
+                        "locality": "",
+                        "postalCode": "",
+                        "primary": true,
+                        "region": "",
+                        "streetAddress": "",
+                        "type": "work"
+                    }
+                ],
+                "emails": [
+                    {
+                        "primary": true,
+                        "type": "work",
+                        "value": "holger.danske@@M365x91871532.onmicrosoft.com"
+                    }
+                ],
+                "nickName": "holger.danske",
+                "phoneNumbers": [
+                    {
+                        "type": "mobile",
+                        "value": "+47 00000000"
+                    }
+                ],
+                "preferredLanguage": "dk-DK",
+                "timezone": "Copenhagen/Denmark",
+                "title": "Consultant",
+                "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
+                    "costCenter": "ELDK",
+                    "department": "ELDK 2026",
+                    "division": "Experts Live Denmark",
+                    "organization": "Elven",
+                    "manager": {
+                        "value": "100"
+                    }
+                },
+                "urn:ietf:params:scim:schemas:extension:contoso:1.0:User": {
+                    "HireDate": "2026-2-24T08:00:00+02:00",
+                    "LeaveDate": null,
+                    "countryCode": "DK"
+                }
+            }
+        },
+        {
+            "method": "POST",
+            "bulkId": "8c6c7de2-8716-41a7-8683-75d116653c37",
+            "path": "/Users",
+            "data": {
+                "active": true,
+                "displayName": "Flow Streaming",
+                "userName": "flow.streaming",
+                "externalId": "100",
+                "schemas": [
+                    "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"
+                ]
+            }
+        }
+    ],
+    "failOnErrors": null
+}

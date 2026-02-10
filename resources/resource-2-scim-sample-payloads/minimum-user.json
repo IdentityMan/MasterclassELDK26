@@ -1,0 +1,19 @@
+{
+    "schemas": ["urn:ietf:params:scim:api:messages:2.0:BulkRequest"],
+    "Operations": [
+        {
+            "method": "POST",
+            "bulkId": "8c6c7de2-8716-41a7-8683-75d116653c37",
+            "path": "/Users",
+            "data": {
+                "schemas": [
+                    "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"],
+                "externalId": "106",                
+                "userName": "holger.danske",
+                "displayName": "Holger Danske",
+                "active": true                
+            }
+        }        
+    ],
+    "failOnErrors": null
+}
