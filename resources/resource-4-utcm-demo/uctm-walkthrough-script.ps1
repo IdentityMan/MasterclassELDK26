@@ -99,18 +99,20 @@ Connect-MgGraph -Scopes "ConfigurationMonitoring.ReadWrite.All"
 #endregion
 
 #region 4. Create a snapshot of Conditional Access policy configurations via Microsoft Graph PowerShell SDK
-$SnapshotDisplayName = "Conditional Access Baseline"
+$SnapshotDisplayName = "Entra CAP Baseline"
 
 $Uri = "beta/admin/configurationManagement/configurationSnapshots/createSnapshot"
-$body = @{
+$Body = @{
     displayName = $SnapshotDisplayName
     description = "Baseline for your configured Conditional Access policies"
     resources   = @( "$($ResourcesToInclude)" )
 }
-Invoke-MgGraphRequest -Uri $Uri -Method POST -Body $body
+$CreatedSnapshot = Invoke-MgGraphRequest -Uri $Uri -Method POST -Body $Body
+$CreatedSnapshot
 #endregion
 
 # Wait until the snapshot job is completed before proceeding to the next steps.
+Invoke-MgGraphRequest -Method GET -Uri "beta/admin/configurationManagement/configurationSnapshotJobs/$($CreatedSnapshot.id)"
 
 #region 5. Get the configuration snapshot that was just created
 $Filter = "displayName eq '$($SnapshotDisplayName)'"
@@ -129,22 +131,25 @@ $Resources = Invoke-MgGraphRequest -Uri $ResourceLocation -Method GET
 $DesiredResources = [PSCustomObject]@{
     displayName = $Resources.displayName
     description = $Resources.description
-    resources   = @($Resources.resources | Where-Object { $_.properties.BuiltInControls -eq "mfa" `
-                -and $_.properties.IncludeUsers -contains "All" `
+    resources   = @($Resources.resources | Where-Object { 
+            $_.properties.IncludeRoles -contains "Global Administrator" `
                 -and $_.properties.IncludeApplications -contains "All" `
-                -and $_.properties.SignInRiskLevels -contains "high" `
-                -and $_.properties.BuiltInControls -contains "mfa"
-        })
+                -and ($_.properties.AuthenticationStrength -eq "Phishing-resistant MFA" -or $_.properties.AuthenticationStrength -eq "FIDO2 Security Keys")
+        }
+    )
+}
+$DesiredResources.resources | ForEach-Object {
+    Write-Host "Resource Display Name: $($_.displayName)"
 }
 #endregion
 
 #region 6. Set up a configuration monitor with the snapshot data
-$MonitorDisplayName = "CA Policies for Sign-in Risk"
+$MonitorDisplayName = "CA for Global Admin"
 
 $Uri = "beta/admin/configurationManagement/configurationMonitors"
 $body = @{
     displayName = $MonitorDisplayName
-    description = "Monitor critical CA policies for Sign-in Risk"
+    description = "Monitor critical CA"
     baseline    = @{
         displayName = $DesiredResources.displayName
         description = $DesiredResources.description
@@ -167,7 +172,7 @@ $Uri = "/beta/admin/configurationManagement/configurationMonitoringResults?`$fil
 $MonitorResults = Invoke-MgGraphRequest -Uri $Uri -Method GET -OutputType PSObject | Select -expand Value
 #endregion
 
-# Wait for necessary time based on the frequency set for the monitor to get the monitoring results before proceeding to analyze the results for any drifts in the scoped Conditional Access policies.
+# Wait for necessary time based on the frequency set for the monitor to get the monitoring results before proceeding to analyze the results for any drifts in the Conditional Access policies.
 
 #region 9. Analyze the monitoring results for any drifts in the Conditional Access policies
 foreach ($result in $MonitorResults) {
