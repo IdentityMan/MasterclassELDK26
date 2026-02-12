@@ -63,7 +63,7 @@ Run the command `Invoke-Maester -Tag EIDSCA, CA` and review the results as well 
 > - The "Learn more" link, which also guides you to "How to fix" and "MITRE ATT&CK mapping"
 
 ## 3.6 Optional: Run advanced checks for applications and Exposure Management critical assets.
-Run the command Invoke-Maester -Tag App, Recommendation, XSPM -IncludeLongRunning to get test results for application identities and critical assets from Exposure Management. The execution of this check can take up to 15 minutes.
+Run the command `Invoke-Maester -Tag App, Recommendation, XSPM -IncludeLongRunning` to get test results for application identities and critical assets from Exposure Management. The execution of this check can take up to 15 minutes.
 
 ## 3.7 Create your own custom Maester check
 Use the steps and example in the Maester documentation to create your own test:
