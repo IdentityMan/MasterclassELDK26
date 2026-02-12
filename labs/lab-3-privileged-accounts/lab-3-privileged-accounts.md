@@ -17,7 +17,7 @@ The lab will use the API-driven Provisioning API created in Lab 1, and will cons
 
 Creating a Logic App requires access to an Azure Subscription for your Test/Demo tenant. If you do not have an Azure Subscription directly connected to your Entra ID tenant, but can access an Azure Subscription in another tenant, please look into the description of [using Azure Lighthouse here](../../resources/resource-1-azure-lighthouse/readme.md).
 
-If you don't have access to any Azure subscription at all, skip to the last part of this lab excercise, and create a privileged user account directly via Graph Explorer to the Provisioning API, similar to what you did in Lab 1 earlier.
+If you don't have access to any Azure subscription at all, skip to the last part of this lab exercise, and create a privileged user account directly via Graph Explorer to the Provisioning API, similar to what you did in Lab 1 earlier.
 
 ### 3.1.1 - Deploy Logic App and Managed Identity with Bicep
 
