@@ -22,6 +22,7 @@ If you don't have access to any Azure subscription at all, skip to the last part
 ### 3.1.1 - Deploy Logic App and Managed Identity with Bicep
 
 More code details coming, referring to ready [click-to-deploy template](../../resources/resource-3-bicep-custom-extensions/readme.md)
+
 In the previous LAB you've create a custom extension with a new logic app for privileged accounts. Now to set permissions on this logic app the logic app needs a managed identity first. For that go to the logic app and enable a system-assigned managed identity. Once the system assigned managed identity is enabled, run this script [insert link] to assign the right MS Graph permissions to the managed identity.
 
 Once you're ready, also make sure that the managed identity of the Logic App, has 'Access package assignment administrator privileges' on the 'ELDK 2026' catalog and the 'Authentication Administrator' role in Entra. The first role is required for the callback of the custom extension to actually be accepted. This is the least privilege solution, instead of providing MS Graph permissions to all access packages. The second role is required to generated a Temporary Access Pass for the newly generated privileged access accounts.
