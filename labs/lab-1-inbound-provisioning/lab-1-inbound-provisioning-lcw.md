@@ -172,7 +172,6 @@ After the pre-hire workflow has been created, create a new-hire workflow which i
 - Send Welcome email (feel free to customize on your own)
 - Make the user a member of a security group for ELDK 2026
 - Make the user a member of a MS Teams group for ELDK 2026
-- Create access package assignment to the access package created in Lab 2.1
 
 Microsoft Learn source:  [Lifecycle Workflows - Create](https://learn.microsoft.com/en-us/entra/id-governance/create-lifecycle-workflow)
 
@@ -190,7 +189,7 @@ Microsoft Learn source:  [Lifecycle Workflows - Create](https://learn.microsoft.
 
 ## Lab 1.12 - Run the workflows one-by-one
 
-Make sure that all tasks are exectued successfully.\
+Make sure that all tasks are exectued successfully.
 **NOTE:** Be aware that for some tasks the manager need to be configured on the user account and both should have a mailbox assigned.
 **NOTE:** Be aware that the Temporary Access Pass authentication method should be configured within your tenant to generate the Temporary Access Pass.
 
@@ -198,7 +197,16 @@ Microsoft Learn source:  [Lifecycle Workflows - Run on Demand](https://learn.mic
 
 &nbsp;
 
-## Lab 1.13 - (OPTIONAL) Send SCIM Payload via Postman
+## Lab 1.13 - Onboard the user with their TAP and register for MFA
+
+If you've succesfully completed all the earlier steps in this lab you should be able to onboard the end user account by:
+
+- Retrieving the Temporary Access Pass from the mailbox of the manager
+- Sign-in with the user via a web-browser and enroll for MFA via [My Sign-ins](https://mysignins.microsoft.com/security-info)
+
+&nbsp;
+
+## Lab 1.14 - (OPTIONAL) Send SCIM Payload via Postman
 
 This lab utilises the above Application Client scenario, and submits a SCIM payload using the Postman client. As this lab is optional, the steps below are provided on a high overview level, and you can use any other preferred REST API client instead of Postman if you like. 
 
@@ -228,10 +236,20 @@ PS! Make sure not to expose the Client Credentials to third parties via profile 
 
 &nbsp;
 
-## Lab 1.13 - Summary & Discussion
+## Lab 1.15 - (OPTIONAL) Create a custom extension for lifecycle workflows
+
+In some cases you perhaps want to add more advanced scenario's with low code to a lifecycle workflow, for that you can use custom extensions. If you've got time left during the lab you can create a custom extension which can be used within one of the lifecycle workflows created earlier. To do this:
+
+- Create a custom extension within Lifecycle Workflows
+- Configure one of the workflows to run a custom task extension which is created earlier
+
+Microsoft Learn source: [Lifecycle Workflows - Custom Task Extension](https://learn.microsoft.com/en-us/entra/id-governance/lifecycle-workflow-extensibility)
+
+## Lab 1.16 - Summary & Discussion
 
 To finish the lab, turn to your sideperson and discuss or reflect over the following questions.
 
 1. What happens if you want to create another user, and submits a user payload object that uses the same externalId matching attribute as an existing user?
 2. What happens if you submit a new user SCIM payload with a new unique externalId, but the username is already in use by another user in Entra ID? 
 3. Why isn't the userPrincipalName submitted in the SCIM payload? How is it determined?
+4. What happens if you want to onboard a user in lifecycle workflows with a 'Generate TAP' step while the user already has sign-ins on their account?
