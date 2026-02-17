@@ -148,4 +148,4 @@ Microsoft Learn source:  [Entra ID - Passkey Profiles](https://learn.microsoft.c
 
 ## Lab 2.9 - Sign-in with your privileged account and register a passkey
 
-Now you've received a Temporary Access Pass in your regular email, sign-in with your newly generated privileged account 
+Now you've received a Temporary Access Pass in your regular email, sign-in with your newly generated privileged account and register a passkey underneath your account to make sure your privileged account becomes phishing resistant.
