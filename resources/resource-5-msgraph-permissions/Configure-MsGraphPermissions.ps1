@@ -1,5 +1,5 @@
-# Connect to Microsoft Graph with Global Administrator Permissions
-#Connect-MgGraph -Scopes "Application.Read.All","AppRoleAssignment.ReadWrite.All,RoleManagement.ReadWrite.Directory"
+# Connect to Microsoft Graph with Privileged Role Administrator Permissions
+Connect-MgGraph -Scopes "Application.Read.All","AppRoleAssignment.ReadWrite.All,RoleManagement.ReadWrite.Directory"
 
 # You will be prompted for the Name of you Managed Identity
 $MdId_Name = Read-Host "Name of your Managed Identity"
@@ -11,6 +11,8 @@ $graphApp = Get-MgServicePrincipal -Filter "AppId eq '00000003-0000-0000-c000-00
 # Add the required Graph scopes
 $graphScopes = @(
     "User.Read.All"
+    "SynchronizationData-User.Upload"
+    "AuditLog.Read.All"
     "Mail.Send"
 )
  
