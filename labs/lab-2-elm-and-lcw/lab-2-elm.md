@@ -1,4 +1,4 @@
-# Lab 2 - Entitlement Management and Lifecycle Workflows
+# Lab 2 - Entitlement Management
 
 The activities in this lab will all be executed within the [Entitlement Management](https://entra.microsoft.com/#view/Microsoft_AAD_ERM/DashboardBlade/~/GettingStarted) & [Lifecycle Workflows](https://entra.microsoft.com/#view/Microsoft_AAD_LifecycleManagement/CommonMenuBlade/~/overview) blade in Entra ID. For this you need at a bear minimum 'Identity Governance Administrator' and 'Lifecycle Workflow Administrator'.
 
@@ -18,7 +18,12 @@ Microsoft Learn source: [Entitlement Management - Access Package Create](https:/
 
 &nbsp;
 
-## Lab 2.2 - Create an access package with an auto assignment policy
+## Lab 2.2 - Add the assignment of this access package to the pre-hire workflow as a task
+BLABLABLA
+
+&nbsp;
+
+## Lab 2.3 - Create an access package with an auto assignment policy
 
 Now you've seen that access packages are an easy way to request access to multiple resources in one go, let's create another access package which will auto-assign users to the access package which:
 
@@ -34,7 +39,7 @@ Microsoft Learn source: [Entitlement Management - Access Package Auto Assignment
 
 &nbsp;
 
-## Lab 2.3 - Create a custom extension for access packages
+## Lab 2.4 - Create a custom extension for access packages
 
 In some cases you perhaps want to add more advanced scenario's with low code to an access package, for that you can use custom extensions. For the next lab create a custom extension for requesting a privileged account and create a new access package which uses the custom extension on the 'assignment granted' stage. To do this:
 
@@ -50,7 +55,7 @@ Microsoft Learn source: [Entitlement Management - Custom Extension](https://lear
 
 &nbsp;
 
-## Lab 2.4 - Enable the passkey authentication method
+## Lab 2.5 - Enable the passkey authentication method
 
 Now the onboarding has finished let's make sure that once the end user is starting to use their TAP they can onboard a passkey to their account. Within Entra ID go to Authentication Methods with an admin account which has the authentication policy administrator role. Here make sure that:
 
