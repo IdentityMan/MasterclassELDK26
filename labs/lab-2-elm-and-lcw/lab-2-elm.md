@@ -61,6 +61,11 @@ Microsoft Learn source: [Entitlement Management - Access Package Auto Assignment
 
 &nbsp;
 
+## 2.4
+
+Go to lab 2.4.1 if you want to deploy Logic Apps and Managed Identities with bicep code.
+If you rather want to do this via the UI, go to lab 2.4.2
+
 ### 2.4.1 - Deploy Logic App and Managed Identity with Bicep
 
 If you rather want to deploy the Logic App and managed Identity via the user interface go to the next step in this lab. For the ones who rather deal with code, we have prepared a Bicep deployment, [main.bicep](../../resources/resource-3-bicep-custom-extensions/main.bicep), that creates two Logic Apps for Custom Extensions, one for Lifecycle Workflows and one for Access Package usage. Change all TODO references to match your environment, and deploy using guidelines documented in the [readme](../../resources/resource-3-bicep-custom-extensions/readme.md)
@@ -73,7 +78,7 @@ These Logic Apps can be used within the next excercises in this lab.
 
 &nbsp;
 
-## Lab 2.4.2 - Create an access package which is using a custom extension
+### Lab 2.4.2 - Create an access package which is using a custom extension
 
 In lots of sceanrios you want to add more advanced scenario's with low code to an access package or lifecycle workflow, for that you can use custom extensions. For the next lab create a custom extension for requesting a privileged account and create a new access package which uses the custom extension on the 'assignment granted' stage. To do this:
 
