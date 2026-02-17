@@ -30,7 +30,7 @@ Now the access package has been created successfully, let's make sure to add it 
 
 For that edit the 'pre-hire' workflow and add 'request access to an access package' as a taks and select the previously created access package and make sure to **save** your edited workflow. Now run the workflow on demand and make sure that the access request is being made to the access package.
 
-**NOTE**: If you have active sign-ins on the account which is targeted during the run on demand the 'Generate and send TAP' step will fail, therefore make sure that on this task you temporarily tick the 'Continue on errror' checkbox within the workflow.
+**NOTE**: If you have active sign-ins on the account which is targeted during the run on demand the 'Generate and send TAP' step will fail, therefore make sure that on this task you temporarily tick the 'Continue on error' checkbox within the workflow.
 
 &nbsp;
 
