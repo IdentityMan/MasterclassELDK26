@@ -14,7 +14,7 @@ var resourceGroupName string = 'rg-${orgName}-${applicationName}'
 // Your Microsoft Entra tenant Id
 // TODO: Change these to match your environment
 @secure()
-param tenantId string = '0da56191-c95e-431f-acee-67e84aeb791a' 
+param tenantId string // = 'your-tenant-id-here'
 
 // Resource Tags for all resources deployed with this Bicep file
 // TODO: Change, add or remove these to match your environment
@@ -43,7 +43,7 @@ resource rg 'Microsoft.Resources/resourceGroups@2025-04-01' existing = {
 // Using AVM module for User Assigned Managed Identity
 module userAssignedIdentity 'br/public:avm/res/managed-identity/user-assigned-identity:0.5.0' = {
   name: 'userAssignedIdentityDeployment'
-  scope: resourceGroup(rg.name)  
+  scope: resourceGroup(rg.name)
   params: {
     // Required parameters
     name: 'mi-${toLower(replace(applicationName,' ',''))}-${toLower(projectName)}'
@@ -71,42 +71,55 @@ param appRoles array = [
 ]
 
 // Looping through the App Roles and assigning them to the Managed Identity
-resource assignAppRole 'Microsoft.Graph/appRoleAssignedTo@v1.0' = [for appRole in appRoles: {
-  appRoleId: (filter(graphSpn.appRoles, role => role.value == appRole)[0]).id
-  principalId: miSpn.id
-  resourceId: graphSpn.id
-}]
+resource assignAppRole 'Microsoft.Graph/appRoleAssignedTo@v1.0' = [
+  for appRole in appRoles: {
+    appRoleId: (filter(graphSpn.appRoles, role => role.value == appRole)[0]).id
+    principalId: miSpn.id
+    resourceId: graphSpn.id
+  }
+]
+
+// The following section will provision two Logic Apps that will be used as Custom Extensions 
+// for Microsoft Entra Entitlement Management and Lifecycle Workflows.
+// Example names are provided in the following parameters  naming convention.
+param logicAppNameEmap string = 'logicapp-${toLower(replace(applicationName,' ',''))}-${toLower(projectName)}-provision-priv-account'
+param logicAppNameLcw string = 'logicapp-${toLower(replace(applicationName,' ',''))}-${toLower(projectName)}-lcw-bootstrap-user'
 
 // OAuth policy settings for Logic App Custom Extension
 // This is needed for Proof-of-Possession (PoP) authentication when Entra calls the Custom Extension Logic App 
 var issuer string = 'https://sts.windows.net/${tenantId}/'
-var audience string = environment().resourceManager
+var audience string = substring(environment().resourceManager, 0, length(environment().resourceManager) - 1)
 // Well-known First-Party App Id for Microsoft Entra Lifecycle Workflows
 var firstparty_appid_lcw string = 'ce79fdc4-cd1d-4ea5-8139-e74d7dbe0bb7'
 // Well-known First-Party App Id for Microsoft Entra Entitlement Management Access Package (EMAP)
 var firstparty_appid_emap string = '810dcf14-1858-4bf2-8134-4c369fa3235b'
-var u string = replace(environment().resourceManager, 'https://', '')
+var u string = replace(replace(environment().resourceManager, 'https://', ''), '/', '')
 var m string = 'POST'
-var p_emap string = resourceId('Microsoft.Logic/workflows', 'logicapp-${toLower(replace(applicationName,' ',''))}-${toLower(projectName)}-provision-priv-account')
-var p_lcw string = resourceId('Microsoft.Logic/workflows', 'logicapp-${toLower(replace(applicationName,' ',''))}-${toLower(projectName)}-lcw-test')
+var p_emap string = '/subscriptions/${subscription().subscriptionId}/resourceGroups/${rg.name}/providers/Microsoft.Logic/workflows/${logicAppNameEmap}'
+var p_lcw string = '/subscriptions/${subscription().subscriptionId}/resourceGroups/${rg.name}/providers/Microsoft.Logic/workflows/${logicAppNameLcw}'
 
 var oauthClaimsLcw = [
-    { name: 'iss', value: issuer }
-    { name: 'aud', value: audience }
-    { name: 'appid', value: firstparty_appid_lcw }
-    { name: 'u', value: u }
-    { name: 'm', value: m }
-    { name: 'p', value: p_lcw }
+  { name: 'iss', value: issuer }
+  { name: 'aud', value: audience }
+  { name: 'appid', value: firstparty_appid_lcw }
+  { name: 'u', value: u }
+  { name: 'm', value: m }
+  { name: 'p', value: p_lcw }
 ]
 
 var oauthClaimsEmap = [
-    { name: 'iss', value: issuer }
-    { name: 'aud', value: audience }
-    { name: 'appid', value: firstparty_appid_emap }
-    { name: 'u', value: u }
-    { name: 'm', value: m }
-    { name: 'p', value: p_emap }
+  { name: 'iss', value: issuer }
+  { name: 'aud', value: audience }
+  { name: 'appid', value: firstparty_appid_emap }
+  { name: 'u', value: u }
+  { name: 'm', value: m }
+  { name: 'p', value: p_emap }
 ]
+
+// For Access Package Catalog Custom Extension, we need the Catalog Id from your environment
+// TODO: Change this to match the Catalog Id in your environment
+// You can find this in the URL or as the Object Id when you open the Catalog in the Entra ID Governance Portal 
+param catalogId string // = '<your-catalog-id-here>'
 
 // Creating Logic App for Custom Extension - Access Package Catalog
 // Using AVM Module for Logic App Workflow
@@ -115,7 +128,7 @@ module logicAppCustomExtensionEmap 'br/public:avm/res/logic/workflow:0.5.3' = {
   scope: resourceGroup(rg.name)
   params: {
     // Required parameters
-    name: 'logicapp-${toLower(replace(applicationName,' ',''))}-${toLower(projectName)}-provision-priv-account'
+    name: logicAppNameEmap
     location: location
     managedIdentities: {
       userAssignedResourceIds: [
@@ -134,32 +147,50 @@ module logicAppCustomExtensionEmap 'br/public:avm/res/logic/workflow:0.5.3' = {
       }
     }
     workflowActions: {
-      Condition:{
+      Condition_CatalogId: {
         type: 'If'
         expression: {
           and: [
             {
               equals: [
-                '@{triggerBody()?[\'AccessPackageCatalog\']?[\'Id\']}', '9649775e-1b82-41b6-b9fc-099e36ab4451'
+                '@{triggerBody()?[\'AccessPackageCatalog\']?[\'Id\']}'
+                catalogId
               ]
             }
           ]
         }
         actions: {
-          Condition_2: {
+          Condition_ConnectionTest: {
             type: 'If'
             expression: {
               and: [
                 {
                   equals: [
-                    '@{triggerBody()?[\'Stage\']}', 'CustomExtensionConnectionTest'
+                    '@{triggerBody()?[\'Stage\']}'
+                    'CustomExtensionConnectionTest'
                   ]
                 }
               ]
             }
             actions: {}
             else: {
-              actions: {}
+              actions: {
+                Get_User_Details: {
+                  type: 'Http'
+                  inputs: {
+                    uri: 'https://graph.microsoft.com/v1.0/users/@{triggerBody()?[\'Assignment\']?[\'Target\']?[\'ObjectId\']}?$select=displayName,givenName,surname,mailNickname,mobilePhone,jobTitle,preferredLanguage,officeLocation,accountEnabled,companyName,department,employeeId,employeeOrgData,employeeHireDate,employeeLeaveDateTime,usageLocation'
+                    method: 'GET'
+                    headers: {
+                      consistencyLevel: 'eventual'
+                    }
+                    authentication: {
+                      type: 'ManagedServiceIdentity'
+                      identity: userAssignedIdentity.outputs.resourceId
+                      audience: 'https://graph.microsoft.com'
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -167,23 +198,7 @@ module logicAppCustomExtensionEmap 'br/public:avm/res/logic/workflow:0.5.3' = {
           actions: {}
         }
         runAfter: {}
-      }   
-      HTTP: {
-        type: 'Http'
-        runAfter: {Condition: ['Succeeded']}
-        inputs: {
-          uri: 'https://graph.microsoft.com/v1.0/users/$count?$filter=userType%20ne%20\'guest\''
-          method: 'GET'
-          headers: {
-            consistencyLevel: 'eventual'
-          }
-          authentication: {
-            type: 'ManagedServiceIdentity'
-            identity: userAssignedIdentity.outputs.resourceId
-            audience: 'https://graph.microsoft.com'
-          }
-        }
-      }    
+      }
     }
     triggersAccessControlConfiguration: {
       openAuthenticationPolicies: {
@@ -197,7 +212,7 @@ module logicAppCustomExtensionEmap 'br/public:avm/res/logic/workflow:0.5.3' = {
       sasAuthenticationPolicy: {
         state: 'Disabled'
       }
-    }    
+    }
   }
 }
 
@@ -208,7 +223,7 @@ module logicAppCustomExtensionLcw 'br/public:avm/res/logic/workflow:0.5.3' = {
   scope: resourceGroup(rg.name)
   params: {
     // Required parameters
-    name: 'logicapp-${toLower(replace(applicationName,' ',''))}-${toLower(projectName)}-lcw-test'
+    name: logicAppNameLcw
     location: location
     managedIdentities: {
       userAssignedResourceIds: [
@@ -226,8 +241,7 @@ module logicAppCustomExtensionLcw 'br/public:avm/res/logic/workflow:0.5.3' = {
         operationOptions: 'IncludeAuthorizationHeadersInOutputs'
       }
     }
-    workflowActions: {  
-    }
+    workflowActions: {}
     triggersAccessControlConfiguration: {
       openAuthenticationPolicies: {
         policies: {
@@ -240,7 +254,6 @@ module logicAppCustomExtensionLcw 'br/public:avm/res/logic/workflow:0.5.3' = {
       sasAuthenticationPolicy: {
         state: 'Disabled'
       }
-    }    
+    }
   }
 }
-
