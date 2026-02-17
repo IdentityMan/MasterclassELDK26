@@ -36,7 +36,12 @@ Microsoft Learn source: [Entitlement Management - Access Package Create](https:/
 &nbsp;
 
 ## Lab 2.2 - Add the assignment of this access package to the pre-hire workflow as a task
-BLABLABLA
+
+Now the access package has been created successfully, let's make sure to add it to a lifecycle workflow which has been created in the previous lab. We do this to make sure that for new joiners the access request is already put into the system and they don't have to request it theirselves in their first work week.
+
+For that edit the 'pre-hire' workflow and add 'request access to an access package' as a taks and select the previously created access package and make sure to **save** your edited workflow. Now run the workflow on demand and make sure that the access request is being made to the access package.
+
+**NOTE**: If you have active sign-ins on the account which is targeted during the run on demand the 'Generate and send TAP' step will fail, therefore make sure that on this task you temporarily tick the 'Continue on errror' checkbox within the workflow.
 
 &nbsp;
 
@@ -56,35 +61,39 @@ Microsoft Learn source: [Entitlement Management - Access Package Auto Assignment
 
 &nbsp;
 
-## Lab 2.4 - Create an access package which is using a custom extension
+### 2.4.1 - Deploy Logic App and Managed Identity with Bicep
 
-In some cases you perhaps want to add more advanced scenario's with low code to an access package, for that you can use custom extensions. For the next lab create a custom extension for requesting a privileged account and create a new access package which uses the custom extension on the 'assignment granted' stage. To do this:
+If you rather want to deploy the Logic App and managed Identity via the user interface go to the next step in this lab. For the ones who rather deal with code, we have prepared a Bicep deployment, [main.bicep](../../resources/resource-3-bicep-custom-extensions/main.bicep), that creates two Logic Apps for Custom Extensions, one for Lifecycle Workflows and one for Access Package usage. Change all TODO references to match your environment, and deploy using guidelines documented in the [readme](../../resources/resource-3-bicep-custom-extensions/readme.md)
 
-- Create a custom extension with Logic App for 'privileged account requests' in the 'ELDK 2026' catalog.
+This Bicep deployment, in addition to the Logic App Workflows, also create an User Assigned Managed Identity, gives the UAMI Graph Permissions, and connects the UAMI to the Logic Apps.
+
+**NOTE**: When creating a Logic App in a multi-tenant scenario, the Authorization Policy of the Logic App will point to the wrong tenant. Please change the TenantID to the Entra tenantID you are setting up the custom extensions for, and not for the Entra TenantID where the Azure Subscription resides in.
+
+These Logic Apps can be used within the next excercises in this lab.
+
+&nbsp;
+
+## Lab 2.4.2 - Create an access package which is using a custom extension
+
+In lots of sceanrios you want to add more advanced scenario's with low code to an access package or lifecycle workflow, for that you can use custom extensions. For the next lab create a custom extension for requesting a privileged account and create a new access package which uses the custom extension on the 'assignment granted' stage. To do this:
+
+- Create a custom extension with Logic App for 'privileged account requests' in the 'ELDK 2026' catalog (or if you completed lab 2.4.1 successfully, use the pre-created logic apps).
 - Create an accesss package for 'privileged account requests' in the 'ELDK 2026' catalog.
 - The Access Package should not provide access to resources.
 - Can be requested by all members in your directory (excluding guests and prefferaby a dynamic group which only contains enabled users with an employeeID).
 - Doesn't have an approval process (prefferably it has, but for lab and testing purposes you can skip this step).
 - Has no lifecycle or access review configured.
 - Configure the custom extension created earlier to be triggered after the 'Assignment has been granted' stage.
+- If you've skipped LAB 2.4.1. make sure to assign a system assigned managed identity to the logic app created within this lab.
 
 Microsoft Learn source: [Entitlement Management - Custom Extension](https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-logic-apps-integration)
 
 &nbsp;
 
-### 2.4.1 - Deploy Logic App and Managed Identity with Bicep
-
-If you rather want to deploy the Logic App and managed Identity via bicep instead of the UI we have prepared a Bicep deployment, [main.bicep](../../resources/resource-3-bicep-custom-extensions/main.bicep), that creates two Logic Apps for Custom Extensions, one for Lifecycle Workflows and one for Access Package usage. Change all TODO references to match your environment, and deploy using guidelines documented in the [readme](../../resources/resource-3-bicep-custom-extensions/readme.md)
-
-This Bicep deployment, in addition to the Logic App Workflows, also create an User Assigned Managed Identity, gives the UAMI Graph Permissions, and connects the UAMI to the Logic Apps.
-
-These Logic Apps can be used as a starting point for the next excercises in this lab.
-
 ### 3.1.2 - Add Custom Extension to Entitlement Management Catalog
 
-PS! When creating a Logic App in a multi-tenant scenario, the Authorization Policy of the Logic App will point to the wrong tenant. Please change the Tenant ID to the Entra ID tenant you are setting up the custom extensions for, and not for the Entra ID tenant where the Azure Subscription is.
 
-(This is handled by the Bicep deployment above, but if you create the Logic App and Custom Extension in the Portal ypu have to manually verify this).
+
 
 ### 3.1.3 - Create Access Package for Privileged Access using Custom Extension
 
