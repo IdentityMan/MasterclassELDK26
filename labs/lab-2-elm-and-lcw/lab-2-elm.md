@@ -95,11 +95,11 @@ Microsoft Learn source: [Entitlement Management - Custom Extension](https://lear
 Since the logic app and custom extension have now been created but don't contain the low code steps, let's make sure to add these in. For that we have generated example source code which you can 'copy and paste' into the logic app which has been created via the UI or Bicep. The source code can be found at [LogicAppExample.json](../../resources/resource-6-logicapp-example/LogicAppExample.json)
 
 Once the source code is copied in, open the designer in logic apps and make sure to change the following details:
-- ObjectID Condition
-- Change the UserID within the send email action
-- Verify the HTML Body
-- Verify the callback action and message
-- The right Inbound provisioning API endpoint needs to be defined in the logic app.
+- Edit the ObjectID in the first condition to match the of the **'ELDK 2026'** Catalog objectID.
+- Edit the URI to reffer to your own API endpoint within the step **'HTTP - Provision admin account'**.
+- Change the users objectID to an ObjectID in your tenant which is used as from address for the email being send out within the step **'HTTP - Send an email'**.
+- Verify the HTML Body within the step **'HTTP - Send an email'** and alter it to your needs.
+- Verify both 'HTTP - Resume...' steps at the end of the logic app and make sure the 'customExtensionStageInstanceDetail' are matching your needs (this information is written back to the access pacakge request).
 
 Once all the above steps are completed don't forget to hit **save** on the logic app and proceed to the next labb exercise.
 
@@ -111,7 +111,7 @@ To make sure that the managed identity has the right permissions within Microsof
 
 | Target | Permissions or role | Reasoning |
 | --- | --- | --- |
-| Microsoft Graph | User.Read.All, Mail.Send, AuditLog.Read.All, SynchronizationData-User.Upload | Required to grab the user details, execute the API call against the Inbound Provisioning API and being able to send an email via a Microsoft Graph API call. |
+| Microsoft Graph | User.ReadWrite.All, Mail.Send, AuditLog.Read.All, SynchronizationData-User.Upload | Required to grab the user details and set the email address to plus addressing, execute the API call against the Inbound Provisioning API and being able to send an email via a Microsoft Graph API call. |
 | Microsoft Entra | Authentication Administrator, Access Package Assignment Administrator (on ELDK 2026 Catalog). | Required to generate the temporary access pass for a non-privileged user account and execute the API callback against the custom extension in Entitlement Management |
 
 For the Microsoft Graph permissions the following script can be used: [Configure-MsGRaphPermissions.ps1](../../resources/resource-5-msgraph-permissions/Configure-MsGraphPermissions.ps1)
