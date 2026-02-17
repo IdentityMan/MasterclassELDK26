@@ -101,13 +101,23 @@ Microsoft Learn source: [Entitlement Management - Custom Extension](https://lear
 
 ## Lab 2.5 - Edit Logic App with HTTP Requests for Getting User Details from Target and Build SCIM Payload
 
-More details coming...
+Since the logic app and custom extension have now been created but don't contain the low code steps, let's make sure to add these in. For that we have generated example source code which you can 'copy and paste' into the logic app which has been created via the UI or Bicep. The source code can be found at ............
+
+Once the source code is copied in, open the designer in logic apps and make sure to change the following details:
+- ObjectID Condition
+- Change the UserID within the send email action
+- Verify the HTML Body
+- Verify the callback action and message
+
+Once all the above steps are completed don't forget to hit **save** on the logic app and proceed to the next labb exercise.
+
+&nbsp;
 
 ## Lab 2.6 - Provide the managed identity the right MSGraph permissions and Entra roles
 
 To make sure that the managed identity has the right permissions within Microsoft Graph and Microsoft Entra we need to apply the following permissions:
 
-| Target | Permissions or role | reasoning |
+| Target | Permissions or role | Reasoning |
 | --- | --- | --- |
 | Microsoft Graph | User.Read.All, Mail.Send, AuditLog.Read.All, SynchronizationData-User.Upload | Required to grab the user details, execute the API call against the Inbound Provisioning API and being able to send an email via a Microsoft Graph API call. |
 | Microsoft Entra | Authentication Administrator, Access Package Assignment Administrator (on ELDK 2026 Catalog). | Required to generate the temporary access pass for a non-privileged user account and execute the API callback against the custom extension in Entitlement Management |
@@ -117,9 +127,13 @@ For the Microsoft Entra permissions the two roles need to be manually assigned.
 
 Once you're ready, verify if the MS Graph permissions and roles have been configured successfully on the managed identity and continue to the next lab step.
 
+&nbsp;
+
 ## Lab 2.7 - Test the Access Package by requesting access
 
+Now the access package has been configured correctly lets verify if it's fully operational. This can be done by requesting the access package via [MyAccess](https://myaccess.microsoft.com) and make sure the entire process completes successfully and the callback of the custom extension is registered correctly.
 
+&nbsp;
 
 ## Lab 2.8 - Enable the passkey authentication method
 
