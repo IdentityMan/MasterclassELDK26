@@ -27,6 +27,8 @@ More code details coming, referring to ready [click-to-deploy template](../../re
 
 More details coming...
 
+PS! When creating a Logic App in a multi-tenant scenario, the Authorization Policy of the Logic App will point to the wrong tenant. Please change the Tenant ID to the Entra ID tenant you are setting up the custom extensions for, and not for the Entra ID tenant where the Azure Subscription is.
+
 ### 3.1.3 - Create Access Package for Privileged Access using Custom Extension
 
 More details coming...
