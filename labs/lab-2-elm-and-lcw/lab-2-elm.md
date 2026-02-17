@@ -64,8 +64,9 @@ Microsoft Learn source: [Entitlement Management - Access Package Auto Assignment
 ## 2.4 Choice: deploy with Bicep or UI
 
 Go to lab 2.4.1 if you want to deploy Logic Apps and Managed Identities with bicep code.
-
 If you rather want to do this via the UI, go to lab 2.4.2
+
+**NOTE:** If you don't have access to an Azure Subscription, paste and modify [privileged-user.json](../../resources/resource-2-scim-sample-payloads/privileged-user.json) directly into Graph Explorer for the Provisioning API, similar to Lab 1 above.
 
 &nbsp;
 
@@ -98,30 +99,19 @@ Microsoft Learn source: [Entitlement Management - Custom Extension](https://lear
 
 &nbsp;
 
-### 3.1.2 - Add Custom Extension to Entitlement Management Catalog
-
-
-
-
-### 3.1.3 - Create Access Package for Privileged Access using Custom Extension
+## Lab 2.5 - Edit Logic App with HTTP Requests for Getting User Details from Target and Build SCIM Payload
 
 More details coming...
 
-### 3.1.4 - Edit Logic App with HTTP Requests for Getting User Details from Target and Build SCIM Payload
-
-More details coming...
-
-### 3.1.5 - Add SCIM Payload and Send to Provisioning API
+## Lab 2.6 - Provide the managed identity the right MS Graph permissions and Entra roles
 
 More details coming..., referring to [privileged-user.json](../../resources/resource-2-scim-sample-payloads/privileged-user.json)
 
-### 3.1.6 - Test an Access Package assignment to Request a Privileged Account
+## Lab 2.7 - Test the Access Package by requesting access
 
-More details coming...
 
-PS! If you don't have access to an Azure Subscription, paste and modify [privileged-user.json](../../resources/resource-2-scim-sample-payloads/privileged-user.json) directly into Graph Explorer for the Provisioning API, similar to Lab 1 above.
 
-## Lab 2.5 - Enable the passkey authentication method
+## Lab 2.8 - Enable the passkey authentication method
 
 Now the onboarding has finished let's make sure that once the end user is starting to use their TAP they can onboard a passkey to their account. Within Entra ID go to Authentication Methods with an admin account which has the authentication policy administrator role. Here make sure that:
 
@@ -131,3 +121,7 @@ Now the onboarding has finished let's make sure that once the end user is starti
 Microsoft Learn source:  [Entra ID - Passkey Profiles](https://learn.microsoft.com/en-us/entra/identity/authentication/how-to-authentication-passkey-profiles)
 
 &nbsp;
+
+## Lab 2.9 - Sign-in with your privileged account and register a passkey
+
+Now you've received a Temporary Access Pass in your regular email, sign-in with your newly generated privileged account 
