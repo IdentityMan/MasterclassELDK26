@@ -22,4 +22,5 @@ Further resources are available in the [resources](resources) folder:
 - [Unified Tenant Configuration Management (UTCM) - Demo](resources/resource-4-utcm-demo)
 
 ## Contributing and Code of Conduct
+
 Please read our [Contributing Guide](Contribute.md) and [Code of Conduct](Code-of-Conduct.md) for details on on contribution and the process for submitting pull requests to us.

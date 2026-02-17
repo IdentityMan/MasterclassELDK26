@@ -21,11 +21,17 @@ If you don't have access to any Azure subscription at all, skip to the last part
 
 ### 3.1.1 - Deploy Logic App and Managed Identity with Bicep
 
-More code details coming, referring to ready [click-to-deploy template](../../resources/resource-3-bicep-custom-extensions/readme.md)
+We have prepared a Bicep deployment, [main.bicep](../../resources/resource-3-bicep-custom-extensions/main.bicep), that creates two Logic Apps for Custom Extensions, one for Lifecycle Workflows and one for Access Package usage. Change all TODO references to match your environment, and deploy using guidelines documented in the [readme](../../resources/resource-3-bicep-custom-extensions/readme.md)
+
+This Bicep deployment, in addition to the Logic App Workflows, also create an User Assigned Managed Identity, gives the UAMI Graph Permissions, and connects the UAMI to the Logic Apps.
+
+These Logic Apps can be used as a starting point for the next excercises in this lab.
 
 ### 3.1.2 - Add Custom Extension to Entitlement Management Catalog
 
-More details coming...
+PS! When creating a Logic App in a multi-tenant scenario, the Authorization Policy of the Logic App will point to the wrong tenant. Please change the Tenant ID to the Entra ID tenant you are setting up the custom extensions for, and not for the Entra ID tenant where the Azure Subscription is.
+
+(This is handled by the Bicep deployment above, but if you create the Logic App and Custom Extension in the Portal ypu have to manually verify this).
 
 ### 3.1.3 - Create Access Package for Privileged Access using Custom Extension
 

@@ -26,10 +26,12 @@ To create another tenant using your work account, follow the instructions here: 
 If you are a Microsoft Partner enrolled in the Partner Network or an Microsoft Employee, you can use the Microsoft Demo exPeriences portal <https://cdx.transform.microsoft.com/> to create a tenant using the "Microsoft 365 Enterprise Demo Content Pack". PS! There are limitations to how many tenants you can have in total, where the current limitations are:
 
 Microsoft Users:
+
 - One Year tenants: 2
 - 90-Day tenants: 3
 
 Partner Users:
+
 - 90-day tenants: 1
 
 Partner users can only have one tenant simultaneously, so you might have to delete any existing expired tenants before you can create a new one.

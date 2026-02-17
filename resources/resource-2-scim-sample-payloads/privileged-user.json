@@ -5,7 +5,7 @@
     "Operations": [
         {
             "method": "POST",
-            "bulkId": "8c6c7de2-8716-41a7-8683-75d116653c37",
+            "bulkId": "ef5b20ba-2dc3-40c4-ae77-9d8910aea6b4",
             "path": "/Users",
             "data": {
                 "schemas": [
@@ -45,7 +45,7 @@
                     "organization": "Experts Live"
                 },
                 "urn:ietf:params:scim:schemas:extension:contoso:1.0:User": {
-                    "HireDate": "2026-2-24T08:00:00+02:00",
+                    "HireDate": "2026-02-24T08:00:00+02:00",
                     "LeaveDate": null,
                     "countryCode": "DK"
                 }

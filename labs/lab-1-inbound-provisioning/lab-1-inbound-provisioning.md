@@ -163,7 +163,7 @@ PS! Make sure not to expose the Client Credentials to third parties via profile 
     1. Try one of the minimum or full SCIM json payloads from above, or create/modify your own.
     1. Try GET https://graph.microsoft.com/beta/auditLogs/provisioning/?$filter=jobid eq '{{inbound-provisioning-job-id}}', to get the the Provisioning Logs.
 
-## Lab 1.9 - Summary & Discussion
+## Lab 1.10 - Summary & Discussion
 
 To finish the lab, turn to your sideperson and discuss or reflect over the following questions.
 

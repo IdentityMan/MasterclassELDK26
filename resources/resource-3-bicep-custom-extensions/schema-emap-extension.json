@@ -1,0 +1,152 @@
+{
+    "type": "object",
+    "properties": {
+        "AccessPackageAssignmentRequestId": {
+            "type": "string"
+        },
+        "CallbackUriPath": {
+            "type": "string"
+        },
+        "CustomExtensionStageInstanceId": {
+            "type": "string"
+        },
+        "Stage": {
+            "type": "string"
+        },
+        "RequestType": {
+            "type": "string"
+        },
+        "Answers": {
+            "type": "array"
+        },
+        "State": {
+            "type": "string"
+        },
+        "Status": {
+            "type": "string"
+        },
+        "CallbackConfiguration": {
+            "type": "object",
+            "properties": {
+                "DurationBeforeTimeout": {
+                    "type": "string"
+                }
+            }
+        },
+        "AccessPackage": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "string",
+                    "description": "AccessPackage-Id"
+                },
+                "DisplayName": {
+                    "type": "string",
+                    "description": "AccessPackage-DisplayName"
+                },
+                "Description": {
+                    "type": "string",
+                    "description": "AccessPackage-Description"
+                }
+            }
+        },
+        "AccessPackageCatalog": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "string",
+                    "description": "AccessPackageCatalog-Id"
+                },
+                "DisplayName": {
+                    "type": "string",
+                    "description": "AccessPackageCatalog-DisplayName"
+                },
+                "Description": {
+                    "type": "string",
+                    "description": "AccessPackageCatalog-Description"
+                }
+            }
+        },
+        "Assignment": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "string",
+                    "description": "Assignment-Id"
+                },
+                "Target": {
+                    "type": "object",
+                    "properties": {
+                        "ConnectedOrganization": {
+                            "type": "object",
+                            "properties": {
+                                "Id": {
+                                    "type": "string",
+                                    "description": "Assignment-Target-ConnectedOrganization-Id"
+                                },
+                                "DisplayName": {
+                                    "type": "string",
+                                    "description": "Assignment-Target-ConnectedOrganization-DisplayName"
+                                },
+                                "Description": {
+                                    "type": "string",
+                                    "description": "Assignment-Target-ConnectedOrganization-Description"
+                                }
+                            }
+                        },
+                        "Id": {
+                            "type": "string",
+                            "description": "Assignment-Target-Id"
+                        },
+                        "ObjectId": {
+                            "type": "string",
+                            "description": "Assignment-Target-ObjectId"
+                        },
+                        "DisplayName": {
+                            "type": "string",
+                            "description": "Assignment-Target-DisplayName"
+                        }
+                    }
+                },
+                "State": {
+                    "type": "string",
+                    "description": "Assignment-State"
+                },
+                "Status": {
+                    "type": "string",
+                    "description": "Assignment-Status"
+                },
+                "AssignmentPolicy": {
+                    "type": "object",
+                    "properties": {
+                        "Id": {
+                            "type": "string",
+                            "description": "AssignmentPolicy-Id"
+                        },
+                        "DisplayName": {
+                            "type": "string",
+                            "description": "AssignmentPolicy-DisplayName"
+                        }
+                    }
+                }
+            }
+        },
+        "Requestor": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "string",
+                    "description": "Requestor-Id"
+                },
+                "ObjectId": {
+                    "type": "string",
+                    "description": "Requestor-ObjectId"
+                },
+                "DisplayName": {
+                    "type": "string",
+                    "description": "Requestor-DisplayName"
+                }
+            }
+        }
+    }
+}
