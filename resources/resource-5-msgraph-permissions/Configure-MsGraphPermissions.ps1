@@ -10,8 +10,7 @@ $graphApp = Get-MgServicePrincipal -Filter "AppId eq '00000003-0000-0000-c000-00
  
 # Add the required Graph scopes
 $graphScopes = @(
-    "User.ReadWrite.All"
-    "EntitlementManagement.ReadWrite.All"
+    "User.Read.All"
     "Mail.Send"
 )
  
