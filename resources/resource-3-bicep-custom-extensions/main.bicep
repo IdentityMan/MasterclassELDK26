@@ -6,7 +6,7 @@ targetScope = 'subscription'
 // Main Parameters for Deployment
 // TODO: Change these to match your environment
 param applicationName string = 'iam-governance'
-param orgName string = 'elven'
+param orgName string = '<your-org-name>'
 param projectName string = 'ELDK26'
 param location string = 'norwayeast'
 var resourceGroupName string = 'rg-${orgName}-${applicationName}'

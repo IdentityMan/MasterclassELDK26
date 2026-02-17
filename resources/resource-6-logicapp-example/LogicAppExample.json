@@ -1,0 +1,577 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "contentVersion": "1.0.0.0",
+        "triggers": {
+            "manual": {
+                "type": "Request",
+                "kind": "Http",
+                "inputs": {
+                    "schema": {
+                        "properties": {
+                            "AccessPackage": {
+                                "properties": {
+                                    "Description": {
+                                        "description": "AccessPackage-Description",
+                                        "type": "string"
+                                    },
+                                    "DisplayName": {
+                                        "description": "AccessPackage-DisplayName",
+                                        "type": "string"
+                                    },
+                                    "Id": {
+                                        "description": "AccessPackage-Id",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "AccessPackageAssignmentRequestId": {
+                                "type": "string"
+                            },
+                            "AccessPackageCatalog": {
+                                "properties": {
+                                    "Description": {
+                                        "description": "AccessPackageCatalog-Description",
+                                        "type": "string"
+                                    },
+                                    "DisplayName": {
+                                        "description": "AccessPackageCatalog-DisplayName",
+                                        "type": "string"
+                                    },
+                                    "Id": {
+                                        "description": "AccessPackageCatalog-Id",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "Answers": {
+                                "type": "array"
+                            },
+                            "Assignment": {
+                                "properties": {
+                                    "AssignmentPolicy": {
+                                        "properties": {
+                                            "DisplayName": {
+                                                "description": "AssignmentPolicy-DisplayName",
+                                                "type": "string"
+                                            },
+                                            "Id": {
+                                                "description": "AssignmentPolicy-Id",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "Id": {
+                                        "description": "Assignment-Id",
+                                        "type": "string"
+                                    },
+                                    "State": {
+                                        "description": "Assignment-State",
+                                        "type": "string"
+                                    },
+                                    "Status": {
+                                        "description": "Assignment-Status",
+                                        "type": "string"
+                                    },
+                                    "Target": {
+                                        "properties": {
+                                            "ConnectedOrganization": {
+                                                "properties": {
+                                                    "Description": {
+                                                        "description": "Assignment-Target-ConnectedOrganization-Description",
+                                                        "type": "string"
+                                                    },
+                                                    "DisplayName": {
+                                                        "description": "Assignment-Target-ConnectedOrganization-DisplayName",
+                                                        "type": "string"
+                                                    },
+                                                    "Id": {
+                                                        "description": "Assignment-Target-ConnectedOrganization-Id",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "DisplayName": {
+                                                "description": "Assignment-Target-DisplayName",
+                                                "type": "string"
+                                            },
+                                            "Id": {
+                                                "description": "Assignment-Target-Id",
+                                                "type": "string"
+                                            },
+                                            "ObjectId": {
+                                                "description": "Assignment-Target-ObjectId",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "CallbackConfiguration": {
+                                "properties": {
+                                    "DurationBeforeTimeout": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "CallbackUriPath": {
+                                "type": "string"
+                            },
+                            "CustomExtensionStageInstanceId": {
+                                "type": "string"
+                            },
+                            "RequestType": {
+                                "type": "string"
+                            },
+                            "Requestor": {
+                                "properties": {
+                                    "DisplayName": {
+                                        "description": "Requestor-DisplayName",
+                                        "type": "string"
+                                    },
+                                    "Id": {
+                                        "description": "Requestor-Id",
+                                        "type": "string"
+                                    },
+                                    "ObjectId": {
+                                        "description": "Requestor-ObjectId",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "Stage": {
+                                "type": "string"
+                            },
+                            "State": {
+                                "type": "string"
+                            },
+                            "Status": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "operationOptions": "IncludeAuthorizationHeadersInOutputs"
+            }
+        },
+        "actions": {
+            "Condition": {
+                "type": "If",
+                "expression": {
+                    "and": [
+                        {
+                            "equals": [
+                                "@triggerBody()?['AccessPackageCatalog']?['Id']",
+                                "a6461768-60ea-4a25-9863-6ec4cba55e93"
+                            ]
+                        }
+                    ]
+                },
+                "actions": {
+                    "Condition_2": {
+                        "type": "If",
+                        "expression": {
+                            "and": [
+                                {
+                                    "equals": [
+                                        "@triggerBody()?['Stage']",
+                                        "assignmentRequestGranted"
+                                    ]
+                                }
+                            ]
+                        },
+                        "actions": {
+                            "Compose_-_UserPrincipalName": {
+                                "type": "Compose",
+                                "inputs": "adm.@{replace(body('Parse_JSON_-_Get_all_user_details')?['userPrincipalName'],'@identity-man.eu','@jacobsaa.onmicrosoft.com')}",
+                                "runAfter": {
+                                    "Parse_JSON_-_Get_all_user_details": [
+                                        "Succeeded"
+                                    ]
+                                }
+                            },
+                            "HTTP_-_Generate_TAP_for_admin": {
+                                "type": "Http",
+                                "inputs": {
+                                    "uri": "https://graph.microsoft.com/beta/users/@{outputs('Compose_-_UserPrincipalName')}/authentication/temporaryAccessPassMethods",
+                                    "method": "POST",
+                                    "headers": {
+                                        "Content-Type": "application/json"
+                                    },
+                                    "body": {
+                                        "isUsableOnce": true,
+                                        "lifetimeInMinutes": 1440
+                                    },
+                                    "authentication": {
+                                        "type": "ManagedServiceIdentity",
+                                        "audience": "https://graph.microsoft.com"
+                                    }
+                                },
+                                "runAfter": {
+                                    "HTTP_-_Enable_Exchange_Online_plus_addressing": [
+                                        "Succeeded"
+                                    ]
+                                },
+                                "runtimeConfiguration": {
+                                    "contentTransfer": {
+                                        "transferMode": "Chunked"
+                                    }
+                                }
+                            },
+                            "HTTP_-_Get_all_user_details": {
+                                "type": "Http",
+                                "inputs": {
+                                    "uri": "https://graph.microsoft.com/beta/users/@{triggerBody()?['Requestor']?['ObjectId']}?$select=id,displayName,givenName,surname,accountEnabled,userPrincipalName,mailNickname,employeeId",
+                                    "method": "GET",
+                                    "authentication": {
+                                        "audience": "https://graph.microsoft.com",
+                                        "type": "ManagedServiceIdentity"
+                                    }
+                                },
+                                "runtimeConfiguration": {
+                                    "contentTransfer": {
+                                        "transferMode": "Chunked"
+                                    }
+                                }
+                            },
+                            "Parse_JSON_-_Generate_TAP_for_admin": {
+                                "type": "ParseJson",
+                                "inputs": {
+                                    "content": "@body('HTTP_-_Generate_TAP_for_admin')",
+                                    "schema": {
+                                        "properties": {
+                                            "@@odata.context": {
+                                                "type": "string"
+                                            },
+                                            "createdDateTime": {
+                                                "type": "string"
+                                            },
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "isUsable": {
+                                                "type": "boolean"
+                                            },
+                                            "isUsableOnce": {
+                                                "type": "boolean"
+                                            },
+                                            "lifetimeInMinutes": {
+                                                "type": "integer"
+                                            },
+                                            "methodUsabilityReason": {
+                                                "type": "string"
+                                            },
+                                            "startDateTime": {
+                                                "type": "string"
+                                            },
+                                            "temporaryAccessPass": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "runAfter": {
+                                    "HTTP_-_Generate_TAP_for_admin": [
+                                        "Succeeded"
+                                    ]
+                                }
+                            },
+                            "Parse_JSON_-_Get_all_user_details": {
+                                "type": "ParseJson",
+                                "inputs": {
+                                    "content": "@body('HTTP_-_Get_all_user_details')",
+                                    "schema": {
+                                        "properties": {
+                                            "@@odata.context": {
+                                                "type": "string"
+                                            },
+                                            "accountEnabled": {
+                                                "type": "boolean"
+                                            },
+                                            "displayName": {
+                                                "type": "string"
+                                            },
+                                            "employeeId": {},
+                                            "givenName": {
+                                                "type": "string"
+                                            },
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "mailNickname": {
+                                                "type": "string"
+                                            },
+                                            "surname": {
+                                                "type": "string"
+                                            },
+                                            "userPrincipalName": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "runAfter": {
+                                    "HTTP_-_Get_all_user_details": [
+                                        "Succeeded"
+                                    ]
+                                }
+                            },
+                            "HTTP_-_Send_an_email": {
+                                "type": "Http",
+                                "inputs": {
+                                    "uri": "https://graph.microsoft.com/v1.0/users/77ca8b96-893b-4f5b-a3f0-369beeaedf5a/sendMail",
+                                    "method": "POST",
+                                    "body": {
+                                        "message": {
+                                            "subject": "Your IdentityMan Admin account has been created",
+                                            "importance": "High",
+                                            "body": {
+                                                "contentType": "HTML",
+                                                "content": "<p>Hi @{body('Parse_JSON_-_Get_all_user_details')?['givenName']},<br><br>Your request for an admin account has been approved.<br> You can sign-in with your admin account by using the following details and instruction:<br><br> <b><strong>Username: </strong></b>@{outputs('Compose_-_UserPrincipalName')}<br> <b><strong>Temporary Access Pass: </strong></b>@{body('Parse_JSON_-_Generate_TAP_for_admin')?['temporaryAccessPass']}<br><br> You can now go to <a href='https://aka.ms/mysecurityinfo'>MySecurityInfo</a> to use your temporary acccess pass to register for a passwordless method (preferably a Security Key or a Passkey), be aware that we don't use passwords so there is no need anymore to know or reset your password.<br><br> At last, please don't share these account details with anyone else but you.<br><br> Kind Regards,<br><br> IdentityMan Helpdesk</p>"
+                                            },
+                                            "toRecipients": [
+                                                {
+                                                    "emailAddress": {
+                                                        "address": "@{body('Parse_JSON_-_Get_all_user_details')?['userPrincipalName']}"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "authentication": {
+                                        "type": "ManagedServiceIdentity",
+                                        "audience": "https://graph.microsoft.com"
+                                    }
+                                },
+                                "runAfter": {
+                                    "Parse_JSON_-_Generate_TAP_for_admin": [
+                                        "Succeeded"
+                                    ]
+                                },
+                                "runtimeConfiguration": {
+                                    "contentTransfer": {
+                                        "transferMode": "Chunked"
+                                    }
+                                }
+                            },
+                            "Set_variable_-_Request_Body_Provisioning": {
+                                "type": "SetVariable",
+                                "inputs": {
+                                    "name": "RequestBodyProvisioning",
+                                    "value": "{\n    \"schemas\":  [\n                    \"urn:ietf:params:scim:api:messages:2.0:BulkRequest\"\n                ],\n    \"Operations\":  [\n                       {\n                           \"method\":  \"POST\",\n                           \"bulkId\":  \"@{variables('GeneratedPassword')}\",\n                           \"path\":  \"/Users\",\n                           \"data\":  {\n                                        \"schemas\":  [\n                                                        \"urn:ietf:params:scim:schemas:core:2.0:User\",\n                                                        \"urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\"\n                                                    ],\n                                        \"nickName\":  \"@{body('Parse_JSON_-_Get_all_user_details')?['mailNickname']}\",\n                                        \"userName\":  \"@{outputs('Compose_-_UserPrincipalName')}\",\n                                        \"displayName\":  \"@{body('Parse_JSON_-_Get_all_user_details')?['displayName']} - Admin\",\n                                        \"emails\":  [\n                                                       {\n                                                            \"value\": \"@{body('Parse_JSON_-_Get_all_user_details')?['mailNickname']}+admin@identity-man.eu\",\n                                                            \"type\": \"work\",\n                                                            \"primary\": true\n                                                       }\n                                                   ],\n                                        \"name\":  {\n                                                     \"familyName\":  \"@{body('Parse_JSON_-_Get_all_user_details')?['surname']}\",\n                                                     \"givenName\":  \"@{body('Parse_JSON_-_Get_all_user_details')?['givenName']}\"\n                                                 },\n                                        \"externalId\":  \"A@{body('Parse_JSON_-_Get_all_user_details')?['employeeId']}\",\n                                        \"active\":  true\n                                    }\n                       }\n                   ],\n    \"failOnErrors\":  null\n}"
+                                },
+                                "runAfter": {
+                                    "Compose_-_UserPrincipalName": [
+                                        "Succeeded"
+                                    ]
+                                }
+                            },
+                            "HTTP_-_Provision_admin_account": {
+                                "type": "Http",
+                                "inputs": {
+                                    "uri": "https://graph.microsoft.com/v1.0/servicePrincipals/c3f0a750-3a78-4507-a30f-36f3ea3479e4/synchronization/jobs/API2AAD.ad7aaf9de4784d3f99aace450535d9cc.7cbfb5f7-2635-4a01-b793-c4f646ae4a9f/bulkUpload",
+                                    "method": "POST",
+                                    "headers": {
+                                        "Content-Type": "application/scim+json"
+                                    },
+                                    "body": "@variables('RequestBodyProvisioning')",
+                                    "authentication": {
+                                        "type": "ManagedServiceIdentity",
+                                        "audience": "https://graph.microsoft.com"
+                                    }
+                                },
+                                "runAfter": {
+                                    "Set_variable_-_Request_Body_Provisioning": [
+                                        "Succeeded"
+                                    ]
+                                },
+                                "runtimeConfiguration": {
+                                    "contentTransfer": {
+                                        "transferMode": "Chunked"
+                                    }
+                                }
+                            },
+                            "HTTP_-_Enable_Exchange_Online_plus_addressing": {
+                                "type": "Http",
+                                "inputs": {
+                                    "uri": "https://graph.microsoft.com/beta/users/@{outputs('Compose_-_UserPrincipalName')}",
+                                    "method": "PATCH",
+                                    "body": {
+                                        "mail": "@{body('Parse_JSON_-_Get_all_user_details')?['mailNickname']}+admin@identity-man.eu"
+                                    },
+                                    "authentication": {
+                                        "type": "ManagedServiceIdentity",
+                                        "audience": "https://graph.microsoft.com"
+                                    }
+                                },
+                                "runAfter": {
+                                    "Delay_-_20_seconds": [
+                                        "Succeeded"
+                                    ]
+                                },
+                                "runtimeConfiguration": {
+                                    "contentTransfer": {
+                                        "transferMode": "Chunked"
+                                    }
+                                }
+                            },
+                            "Delay_-_20_seconds": {
+                                "type": "Wait",
+                                "inputs": {
+                                    "interval": {
+                                        "count": 20,
+                                        "unit": "Second"
+                                    }
+                                },
+                                "runAfter": {
+                                    "HTTP_-_Provision_admin_account": [
+                                        "Succeeded",
+                                        "TimedOut",
+                                        "Skipped",
+                                        "Failed"
+                                    ]
+                                }
+                            }
+                        },
+                        "else": {
+                            "actions": {}
+                        }
+                    }
+                },
+                "else": {
+                    "actions": {}
+                },
+                "runAfter": {
+                    "Initialize_variables_-_RequestBodyProvisioning": [
+                        "Succeeded"
+                    ]
+                }
+            },
+            "HTTP_-_Resume_an_access_package_assignment_request": {
+                "type": "Http",
+                "inputs": {
+                    "uri": "https://graph.microsoft.com/v1.0/identityGovernance/entitlementManagement/assignmentRequests/@{triggerBody()?['AccessPackageAssignmentRequestId']}/resume",
+                    "method": "POST",
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "body": {
+                        "data": {
+                            "@@odata.type": "microsoft.graph.accessPackageAssignmentRequestCallbackData",
+                            "customExtensionStageInstanceDetail": "Admin account has been created",
+                            "customExtensionStageInstanceId": "@{triggerBody()?['CustomExtensionStageInstanceId']}",
+                            "stage": "assignmentRequestGranted"
+                        },
+                        "source": "IdentityMan.AdminAccountRequest",
+                        "type": "microsoft.graph.accessPackageCustomExtensionStage.assignmentRequestGranted"
+                    },
+                    "authentication": {
+                        "audience": "https://graph.microsoft.com",
+                        "type": "ManagedServiceIdentity"
+                    }
+                },
+                "runAfter": {
+                    "Condition": [
+                        "Succeeded"
+                    ]
+                },
+                "operationOptions": "DisableAsyncPattern",
+                "runtimeConfiguration": {
+                    "contentTransfer": {
+                        "transferMode": "Chunked"
+                    }
+                }
+            },
+            "HTTP_-_Resume_and_deny_an_access_package_assignment_request": {
+                "type": "Http",
+                "inputs": {
+                    "uri": "https://graph.microsoft.com/v1.0/identityGovernance/entitlementManagement/assignmentRequests/@{triggerBody()?['AccessPackageAssignmentRequestId']}/resume",
+                    "method": "POST",
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "body": {
+                        "data": {
+                            "@@odata.type": "microsoft.graph.accessPackageAssignmentRequestCallbackData",
+                            "customExtensionStageInstanceDetail": "Admin account creation failed",
+                            "customExtensionStageInstanceId": "",
+                            "stage": "assignmentRequestGranted"
+                        },
+                        "source": "IdentityMan.AdminAccountRequest",
+                        "type": "microsoft.graph.accessPackageCustomExtensionStage.assignmentRequestGranted"
+                    },
+                    "authentication": {
+                        "audience": "https://graph.microsoft.com",
+                        "type": "ManagedServiceIdentity"
+                    }
+                },
+                "runAfter": {
+                    "Condition": [
+                        "TimedOut",
+                        "Skipped",
+                        "Failed"
+                    ]
+                },
+                "operationOptions": "DisableAsyncPattern",
+                "runtimeConfiguration": {
+                    "contentTransfer": {
+                        "transferMode": "Chunked"
+                    }
+                }
+            },
+            "Initialize_variable_-_Guid": {
+                "type": "InitializeVariable",
+                "inputs": {
+                    "variables": [
+                        {
+                            "name": "GeneratedPassword",
+                            "type": "string",
+                            "value": "@{guid()}"
+                        }
+                    ]
+                },
+                "runAfter": {}
+            },
+            "Initialize_variables_-_RequestBodyProvisioning": {
+                "type": "InitializeVariable",
+                "inputs": {
+                    "variables": [
+                        {
+                            "name": "RequestBodyProvisioning",
+                            "type": "string"
+                        }
+                    ]
+                },
+                "runAfter": {
+                    "Initialize_variable_-_Guid": [
+                        "Succeeded"
+                    ]
+                }
+            }
+        },
+        "outputs": {},
+        "parameters": {
+            "$connections": {
+                "type": "Object",
+                "defaultValue": {}
+            }
+        }
+    },
+    "parameters": {
+        "$connections": {
+            "type": "Object",
+            "value": {}
+        }
+    }
+}
