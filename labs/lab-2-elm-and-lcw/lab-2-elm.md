@@ -32,6 +32,8 @@ For that edit the 'pre-hire' workflow and add 'request access to an access packa
 
 **NOTE**: If you have active sign-ins on the account which is targeted during the run on demand the 'Generate and send TAP' step will fail, therefore make sure that on this task you temporarily tick the 'Continue on error' checkbox within the workflow.
 
+Microsoft Learn source: [Lifecycle Workflow Tasks - Request User Access Package Assignment](https://learn.microsoft.com/en-us/entra/id-governance/lifecycle-workflow-tasks#request-user-access-package-assignment)
+
 &nbsp;
 
 ## Lab 2.3 - Create an access package with an auto assignment policy
