@@ -84,7 +84,7 @@ In lots of sceanrios you want to add more advanced scenario's with low code to a
 - Doesn't have an approval process (prefferably it has, but for lab and testing purposes you can skip this step).
 - Has no lifecycle or access review configured.
 - Configure the custom extension created earlier to be triggered after the 'Assignment has been granted' stage.
-- If you've skipped LAB 2.4.1. make sure to assign a system assigned managed identity to the logic app created within this lab.
+- If you've skipped lab 2.4.1. make sure to assign a system assigned managed identity to the logic app created within this lab.
 
 Microsoft Learn source: [Entitlement Management - Custom Extension](https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-logic-apps-integration)
 
