@@ -61,7 +61,7 @@ Microsoft Learn source: [Entitlement Management - Access Package Auto Assignment
 
 &nbsp;
 
-## 2.4
+## 2.4 Choice: deploy with Bicep or UI
 
 Go to lab 2.4.1 if you want to deploy Logic Apps and Managed Identities with bicep code.
 
