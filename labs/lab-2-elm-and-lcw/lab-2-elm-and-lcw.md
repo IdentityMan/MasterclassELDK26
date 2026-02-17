@@ -34,51 +34,6 @@ Microsoft Learn source: [Entitlement Management - Access Package Auto Assignment
 
 &nbsp;
 
-## Lab 2.3 - Create pre-hire workflow
-
-Now first create a pre-hire workflow in lifecycle workflows and scope the pre-hire workflow to be executed for users with the department 'ELDK 2026' 7 days prior to the employeeHireDate. Within this workflow make sure the following actions are set:
-
-- Generate TAP and Send Email to manager
-- Assign at least a mailbox license to the end user
-
-Microsoft Learn source: [Lifecycle Workflows - Create](https://learn.microsoft.com/en-us/entra/id-governance/create-lifecycle-workflow)
-
-&nbsp;
-
-## Lab 2.4 - Create new hire workflow
-
-After the pre-hire workflow has been created, create a new-hire workflow which is triggered based on the employeeHireDate and scoped to users with the departmet 'ELDK 2026'. Within this workflow make sure the following tasks are set:
-
-- Enable Account
-- Send Welcome email (feel free to customize on your own)
-- Make the user a member of a security group for ELDK 2026
-- Make the user a member of a MS Teams group for ELDK 2026
-- Create access package assignment to the access package created in Lab 2.1
-
-Microsoft Learn source:  [Lifecycle Workflows - Create](https://learn.microsoft.com/en-us/entra/id-governance/create-lifecycle-workflow)
-
-&nbsp;
-
-## Lab 2.5 - Create post-onboarding workflow
-
-At last, create a post-onboarding workflow which is scoped to users with the department 'ELDK 2026' 7 days after the employeeHireDate. Within this workflow make sure the following tasks are executed:
-
-- Send onboarding reminder email to manager
-
-Microsoft Learn source:  [Lifecycle Workflows - Create](https://learn.microsoft.com/en-us/entra/id-governance/create-lifecycle-workflow)
-
-&nbsp;
-
-## Lab 2.6 - Run the workflows one-by-one
-
-Make sure that all tasks are exectued successfully.\
-**NOTE:** Be aware that for some tasks the manager need to be configured on the user account and both should have a mailbox assigned.
-**NOTE:** Be aware that the Temporary Access Pass authentication method should be configured within your tenant to generate the Temporary Access Pass.
-
-Microsoft Learn source:  [Lifecycle Workflows - Run on Demand](https://learn.microsoft.com/en-us/entra/id-governance/on-demand-workflow)
-
-&nbsp;
-
 ## Lab 2.7 - Create a custom extension for access packages
 
 In some cases you perhaps want to add more advanced scenario's with low code to an access package, for that you can use custom extensions. For the next lab create a custom extension for requesting a privileged account and create a new access package which uses the custom extension on the 'assignment granted' stage. To do this:
