@@ -4,7 +4,7 @@ This repository contains labs and resources for attendees at Identity Master Cla
 
 ## Labs
 
-Check the [Lab Instructions](/Readme.md) to prepare for the Identity Master Class at Experts Live Denmark 2026.
+Check the [Lab Instructions](labs/Readme.md) to prepare for the Identity Master Class at Experts Live Denmark 2026.
 
 - [Lab 1 - Inbound Provisioning API and Lifecycle Workflows](labs/lab-1-inbound-provisioning-lcw/lab-1-inbound-provisioning-lcw.md)
 - [Lab 2 - Entitlement Management and Custom Extensions](labs/lab-2-elm-ce/lab-2-elm-ce.md)
