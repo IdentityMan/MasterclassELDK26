@@ -15,7 +15,7 @@
                 "externalId": "106",
                 "userName": "holger.danske",
                 "displayName": "Holger Danske",
-                "active": true,
+                "active": false,
                 "name": {
                     "familyName": "Danske",
                     "givenName": "Holger"
@@ -71,7 +71,7 @@
             "bulkId": "3d39e5d4-869a-4fc8-b251-036851f49ca5",
             "path": "/Users",
             "data": {
-                "active": true,
+                "active": false,
                 "displayName": "Flow Streaming",
                 "userName": "flow.streaming",
                 "externalId": "100",
