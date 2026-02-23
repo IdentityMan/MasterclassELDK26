@@ -6,8 +6,8 @@ This repository contains labs and resources for attendees at Identity Master Cla
 
 Check the [Lab Instructions](/Users/thomas/Coding/MasterclassELDK26/labs/Readme.md) to prepare for the Identity Master Class at Experts Live Denmark 2026.
 
-- [Lab 1 - Inbound Provisioning API](labs/lab-1-inbound-provisioning/lab-1-inbound-provisioning.md)
-- [Lab 2 - Entitlement Management and Lifecycle Workflows](labs/lab-2-elm-and-lcw/lab-2-elm-and-lcw.md)
+- [Lab 1 - Inbound Provisioning API and Lifecycle Workflows](labs/lab-1-inbound-provisioning-lcw/lab-1-inbound-provisioning-lcw.md)
+- [Lab 2 - Entitlement Management and Custom Extensions](labs/lab-2-elm-ce/lab-2-elm-ce.md)
 - [Lab 3 - Privileged Accounts](labs/lab-3-privileged-accounts/lab-3-privileged-accounts.md)
 - [Lab 4 - Creating a custom agent with Agent ID](labs/lab-4-agent-id/readme.md)
 - [Lab 5 - Maester and Identity Security Posture](labs/lab-5-maester-identity-posture/lab-5-maester-identity-posture.md)

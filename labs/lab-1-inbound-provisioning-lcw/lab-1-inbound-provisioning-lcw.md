@@ -1,6 +1,6 @@
 # Lab 1 - Inbound Provisioning API
 
-In this first lab you will create an Inbound API-drive Provisioning App in your Tenant, customize attribute mappings and schema, and learn how to post SCIM payloads to create and update users in your tenant.
+In this first lab you will create an Inbound API-drive Provisioning App in your Tenant, customize attribute mappings and schema, and learn how to post SCIM payloads to create and update users in your tenant. For the first part of this lab exercise you need to have, at a bear mnimimum, the Cloud Application Administrator role assigned. 
 
 &nbsp;
 
@@ -78,7 +78,7 @@ After enabling provisioning, the API is ready to receive inbound requests. Go to
 https://graph.microsoft.com/v1.0/servicePrincipals/(service-principal-object-id)/synchronization/jobs/(Job-ID)/bulkUpload
 
 1. Copy the Provisioning API endpoint URI.
-2. Go to Microsoft Graph Explorer, https://aka.ms/ge. Sign in with your Global Administrator account, consenting to Graph permissions as needed.
+2. Go to Microsoft Graph Explorer, https://aka.ms/ge. Sign in with a Privileged Role Administrator account (or Global Administrator) and consent to the Graph permissions as needed.
 3. After signing in, change HTTP request method to **POST**, and the paste in the Provisioning API endpoint URI you copied in the address field.
 4. Go to Modify permissions. You should now see that you need to consent to the permission **SynchronizationData-User.Upload**. Click to Consent this permission for "Bulk upload user data to identity synchronization service", which allows the app to upload bulk user data to the identity synchronization service, on your behalf.
 
@@ -125,7 +125,7 @@ The URI to send GET requests for provisioning logs is "https://graph.microsoft.c
 
 The Job ID is the same as above from setting up the Inbound API-driven provisioning app.
 
-You will need to Consent to "ProvisioningLog.Read.All" permission to explore the above provisioning logs.
+You will need to Consent to "ProvisioningLog.Read.All" permission to explore the above provisioning logs (with a Privileged Role Administrator or Global Admin account).
 
 Paste your Job ID to the URI above and Run Query in Graph Explorer, and verify that you can see the same entries as in the Provisioning Logs from the Inbound Provisioning App in Entra ID.
 
@@ -145,7 +145,7 @@ In this lab exercise we will set up the latter.
 4. Under API permissions, add the following Microsoft Graph **Application** permissions:
     1. ProvisioningLog.Read.All
     1. SynchronizationData-User.Upload
-5. Grant Admin Consent for the Application Permissions.
+5. Grant Admin Consent for the Application Permissions (with a Privileged Role Administrator or Global Admin account)
 6. Under "Certificates & secrets", create a new short-lived Client Secret, and copy the Secret value for later.
 7. On the Overview Page, copy the Client ID and Tenant ID for later.
 
@@ -155,7 +155,7 @@ Using a Client Credential OAuth2 flow, you can now use this Application Client t
 
 ## Lab 1.9 - Create pre-hire workflow
 
-Now first create a pre-hire workflow in lifecycle workflows and scope the pre-hire workflow to be executed for users with the department 'ELDK 2026' 7 days prior to the employeeHireDate. Within this workflow make sure the following actions are set:
+Now the user has been created let's create a pre-hire workflow in lifecycle workflows and scope the pre-hire workflow to be executed for users with the department 'ELDK 2026' 7 days prior to the employeeHireDate. For this you need to have, at a bear mnimimum, the Lifecycle Workflow Administrator role assigned. Within this workflow make sure the following actions are set:
 
 - Generate TAP and Send Email to manager
 - Assign at least a mailbox license to the end user
@@ -189,9 +189,11 @@ Microsoft Learn source:  [Lifecycle Workflows - Create](https://learn.microsoft.
 
 ## Lab 1.12 - Run the workflows one-by-one
 
-Make sure that all tasks are exectued successfully.&nbsp;
-**NOTE:** Be aware that for some tasks the manager need to be configured on the user account and both should have a mailbox assigned.&nbsp;
-**NOTE:** Be aware that the Temporary Access Pass authentication method should be configured within your tenant to generate the Temporary Access Pass./
+Make sure that all tasks are exectued successfully.
+
+**NOTE #1:** Be aware that for some tasks the manager need to be configured on the user account and both should have a mailbox assigned.
+
+**NOTE #2:** Be aware that the Temporary Access Pass authentication method should be configured within your tenant to generate the Temporary Access Pass with Lifecycle Workflows.
 
 Microsoft Learn source:  [Lifecycle Workflows - Run on Demand](https://learn.microsoft.com/en-us/entra/id-governance/on-demand-workflow)
 
@@ -244,6 +246,8 @@ In some cases you perhaps want to add more advanced scenario's with low code to 
 - Configure one of the workflows to run a custom task extension which is created earlier
 
 Microsoft Learn source: [Lifecycle Workflows - Custom Task Extension](https://learn.microsoft.com/en-us/entra/id-governance/lifecycle-workflow-extensibility)
+
+&nbsp;
 
 ## Lab 1.16 - Summary & Discussion
 

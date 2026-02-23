@@ -13,7 +13,7 @@ Microsoft Learn source: [Entra ID - Passkey Profiles](https://learn.microsoft.co
 
 ## Lab 3.2 - Sign-in with your privileged account and register a passkey
 
-Now you've received a Temporary Access Pass in your regular email, sign-in with your newly generated privileged account and register a passkey underneath your account to make sure your privileged account becomes phishing resistant.
+Now you've received a Temporary Access Pass in your regular email, sign-in with your newly generated privileged account and register a passkey for your privileged account to make sure this account becomes phishing resistant.
 
 &nbsp;
 
@@ -25,9 +25,9 @@ Create a manual link between the privileged user and the regular (work) account 
 2. Select or search for the created privileged account.
 3. Click on the tab "Observed in organization" and link the privileged account to the regular (workforce) account of the identity.
 
-More details are available in [Microsoft Learn](https://learn.microsoft.com/en-us/defender-for-identity/link-unlink-account-to-identity#how-to-manually-link-or-unlink-accounts-to-an-identity).
-
 After the link has been created, navigate to the identity page of the work account.
+
+Microsoft Learn source: [MDI - Link or unlink account to identity](https://learn.microsoft.com/en-us/defender-for-identity/link-unlink-account-to-identity#how-to-manually-link-or-unlink-accounts-to-an-identity).
 
 &nbsp;
 
