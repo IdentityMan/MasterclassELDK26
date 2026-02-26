@@ -1,6 +1,6 @@
 # Lab & Resource Source for Identity Master Class - Experts Live Denmark 2026
 
-This repository contains labs and resources for attendees at Identity Master Class, Experts Live Denmark 2026.
+This repository contains labs, resources and the presentation used for attendees at Identity Master Class, Experts Live Denmark 2026.
 
 ## Labs
 
@@ -20,6 +20,10 @@ Further resources are available in the [resources](resources) folder:
 - [SCIM Sample Payloads](resources/resource-2-scim-sample-payloads)
 - [Bicep Custom Extensions](resources/resource-3-bicep-custom-extensions)
 - [Unified Tenant Configuration Management (UTCM) - Demo](resources/resource-4-utcm-demo)
+
+## Presentation
+
+- [ELDK26 - Identity Master Class](presentation/ELDK26_Identity_Master_Class_Final.pdf)
 
 ## Contributing and Code of Conduct
 
